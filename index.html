@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEXAICAN — Plataformas de datos para tomar decisiones, no para acumular reportes</title>
+<meta name="description" content="MEXAICAN construye plataformas de análisis de datos a la medida para empresas de cualquier tamaño en Latinoamérica. Conoce SunAI y Pooly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg: #08080a;
+  --bg-2: #0f0f13;
+  --surface: #16161c;
+  --surface-2: #1c1c24;
+  --line: rgba(245,243,239,0.09);
+  --text: #f5f3ef;
+  --text-dim: #a6a4ab;
+  --text-faint: #6c6a72;
+
+  --purple: #7b3fc4;
+  --yellow: #f5c842;
+  --pink: #e8499a;
+  --blue: #4aa8f5;
+  --orange: #f07830;
+
+  --display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono: 'Space Grotesk', monospace;
+
+  --maxw: 1180px;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{ background:var(--purple); color:#fff; }
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+
+a{color:inherit; text-decoration:none;}
+img,svg{display:block; max-width:100%;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+section{position:relative;}
+ul{list-style:none;}
+
+.grain{
+  pointer-events:none; position:fixed; inset:0; z-index:2; opacity:0.035; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- nav ---------- */
+header{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  background:rgba(8,8,10,0.72); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+nav{
+  max-width:var(--maxw); margin:0 auto; padding:18px 32px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.logo{
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--display); font-weight:700; font-size:19px; letter-spacing:-0.01em;
+}
+.logo-bars{ display:flex; gap:3px; align-items:flex-end; height:16px; }
+.logo-bars span{ width:3px; display:block; border-radius:1px; }
+.logo-bars span:nth-child(1){ background:var(--purple); height:60%; }
+.logo-bars span:nth-child(2){ background:var(--pink); height:100%; }
+.logo-bars span:nth-child(3){ background:var(--orange); height:45%; }
+.logo-bars span:nth-child(4){ background:var(--yellow); height:80%; }
+.logo-bars span:nth-child(5){ background:var(--blue); height:65%; }
+
+.navlinks{ display:flex; gap:34px; font-size:14.5px; color:var(--text-dim); }
+.navlinks a{ transition:color .2s ease; position:relative; }
+.navlinks a:hover{ color:var(--text); }
+.navlinks a.active{ color:var(--text); }
+.navlinks a.active::after{
+  content:''; position:absolute; left:0; right:0; bottom:-20px; height:2px;
+  background:linear-gradient(90deg,var(--purple),var(--pink),var(--orange));
+}
+
+.nav-cta{
+  font-size:14px; font-weight:600; padding:10px 20px; border-radius:100px;
+  background:var(--text); color:var(--bg);
+  transition:transform .2s ease, box-shadow .2s ease;
+  white-space:nowrap;
+}
+.nav-cta:hover{ transform:translateY(-1px); box-shadow:0 8px 24px rgba(245,243,239,0.18); }
+
+/* ---------- shared buttons ---------- */
+.btn-primary{
+  font-weight:600; font-size:15px; padding:15px 28px; border-radius:100px;
+  background:linear-gradient(90deg, var(--purple), var(--pink)); color:#fff;
+  transition:transform .2s ease, box-shadow .2s ease;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(232,73,154,0.35); }
+.btn-ghost{
+  font-weight:600; font-size:15px; padding:15px 24px; border-radius:100px;
+  border:1px solid var(--line); color:var(--text);
+  transition:border-color .2s ease, background .2s ease;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.btn-ghost:hover{ border-color:rgba(245,243,239,0.35); background:rgba(255,255,255,0.03); }
+
+/* ---------- section shell ---------- */
+.section{ padding:110px 0; }
+.section-tight{ padding:70px 0; }
+.section-head{ max-width:640px; margin-bottom:56px; }
+.kicker{
+  font-family:var(--mono); font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--orange); margin-bottom:16px; display:block;
+}
+h1,h2,h3{ font-family:var(--display); letter-spacing:-0.015em; }
+h2{ font-weight:700; font-size:clamp(28px, 3.6vw, 42px); line-height:1.12; }
+.section-head p{ margin-top:18px; color:var(--text-dim); font-size:16.5px; line-height:1.65; }
+
+/* ---------- reveal ---------- */
+.reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.in{ opacity:1; transform:translateY(0); }
+
+/* ---------- footer ---------- */
+footer{ border-top:1px solid var(--line); padding:64px 0 40px; }
+.footer-top{ display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap; margin-bottom:56px; }
+.footer-brand p{ color:var(--text-dim); font-size:14px; max-width:280px; margin-top:14px; line-height:1.6; }
+.footer-cols{ display:flex; gap:64px; flex-wrap:wrap; }
+.footer-col h5{ font-family:var(--mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-faint); margin-bottom:16px; }
+.footer-col a{ display:block; font-size:14px; color:var(--text-dim); margin-bottom:11px; transition:color .2s ease; }
+.footer-col a:hover{ color:var(--text); }
+.footer-social{ display:flex; gap:12px; margin-top:18px; }
+.footer-social a{
+  width:38px; height:38px; border:1px solid var(--line); border-radius:50%;
+  display:flex; align-items:center; justify-content:center; transition:border-color .2s ease, transform .2s ease, background .2s ease;
+}
+.footer-social a:hover{ border-color:rgba(245,243,239,0.35); background:rgba(255,255,255,0.04); transform:translateY(-2px); }
+.footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:28px; border-top:1px solid var(--line); font-size:12.5px; color:var(--text-faint); flex-wrap:wrap; gap:12px; }
+.footer-bars{ display:flex; gap:3px; }
+.footer-bars span{ width:16px; height:4px; border-radius:2px; }
+
+@media (max-width:860px){
+  .navlinks{ display:none; }
+  .footer-top{ flex-direction:column; gap:40px; }
+}
+
+</style>
+<style>
+  .hero{ padding:180px 0 90px; position:relative; overflow:hidden; }
+  .hero::before{
+    content:''; position:absolute; top:-200px; right:-160px; width:640px; height:640px; border-radius:50%;
+    background:radial-gradient(circle at center, rgba(123,63,196,0.28), transparent 70%);
+    filter:blur(40px); pointer-events:none;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--text-dim); border:1px solid var(--line); padding:7px 14px; border-radius:100px;
+    margin-bottom:26px;
+  }
+  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--yellow); box-shadow:0 0 10px var(--yellow); }
+
+  h1.hero-title{ font-weight:700; font-size:clamp(36px, 5.8vw, 68px); line-height:1.05; max-width:920px; }
+  .rotator{ display:inline-block; position:relative; height:1.1em; overflow:hidden; vertical-align:bottom; min-width:1ch; }
+  .rotator-track{ display:block; }
+  .rotator-word{
+    display:block; background:linear-gradient(90deg, var(--purple), var(--pink) 40%, var(--orange) 70%, var(--yellow));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-sub{ margin-top:24px; max-width:560px; font-size:17.5px; line-height:1.6; color:var(--text-dim); }
+  .hero-actions{ margin-top:36px; display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+
+  .ticker-band{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:22px 0; overflow:hidden; background:var(--bg-2); }
+  .ticker-track{ display:flex; width:max-content; gap:0; animation:scrollTicker 28s linear infinite; }
+  .ticker-track:hover{ animation-play-state:paused; }
+  .ticker-item{ display:flex; align-items:center; gap:28px; padding:0 28px; font-family:var(--mono); font-size:14.5px; color:var(--text-dim); white-space:nowrap; }
+  .ticker-item .sep{ width:6px; height:6px; border-radius:50%; }
+  @keyframes scrollTicker{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+  .examples-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .example-card{
+    border:1px solid var(--line); border-radius:24px; padding:36px; background:var(--surface);
+    position:relative; overflow:hidden; transition:transform .3s ease, border-color .3s ease;
+  }
+  .example-card:hover{ transform:translateY(-4px); border-color:rgba(245,243,239,0.18); }
+  .example-card::before{ content:''; position:absolute; top:0; left:0; right:0; height:4px; }
+  .card-sunai::before{ background:linear-gradient(90deg, var(--orange), var(--yellow)); }
+  .card-pooly::before{ background:linear-gradient(90deg, #0e5dff, #4aa8f5); }
+  .example-tag{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase;
+    padding:5px 11px; border-radius:100px; display:inline-block; margin-bottom:18px;
+  }
+  .card-sunai .example-tag{ background:rgba(240,120,48,0.14); color:#f5a06a; }
+  .card-pooly .example-tag{ background:rgba(74,168,245,0.14); color:#7fbcf7; }
+  .example-card h3{ font-weight:700; font-size:23px; margin-bottom:10px; }
+  .example-card p{ color:var(--text-dim); font-size:14.5px; line-height:1.6; margin-bottom:22px; }
+  .example-link{ font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:6px; }
+  .card-sunai .example-link{ color:#f5a06a; }
+  .card-pooly .example-link{ color:#7fbcf7; }
+
+  .invest-band{
+    border:1px solid var(--line); border-radius:28px; padding:48px; background:var(--surface);
+    display:flex; justify-content:space-between; align-items:center; gap:40px; flex-wrap:wrap;
+  }
+  .invest-num{ font-weight:700; font-size:44px; letter-spacing:-0.02em; }
+  .invest-num span{ font-size:18px; color:var(--text-faint); font-weight:500; font-family:var(--body); }
+  .invest-copy p{ color:var(--text-dim); font-size:14.5px; line-height:1.6; margin-top:10px; max-width:380px; }
+  .invest-link{ white-space:nowrap; }
+
+  .invest-duo{ display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:18px; }
+  .invest-card{ border:1px solid var(--line); border-radius:24px; padding:36px; background:var(--surface); display:flex; flex-direction:column; }
+  .invest-card.frugal{ background:linear-gradient(160deg, #1c0f28, var(--surface) 60%); border-color:rgba(199,125,255,0.22); }
+  .invest-card .big-num{ font-family:var(--display); font-weight:700; font-size:32px; margin:12px 0 12px; }
+  .invest-card .big-num span{ font-size:14px; color:var(--text-faint); font-weight:500; font-family:var(--body); }
+  .invest-card p{ color:var(--text-dim); font-size:14px; line-height:1.62; margin-bottom:22px; flex-grow:1; }
+  .invest-others{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding:4px 4px 0; }
+  .invest-others .label{ font-family:var(--mono); font-size:11.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.06em; margin-right:6px; }
+  .invest-others a{ font-size:13px; padding:8px 16px; border:1px solid var(--line); border-radius:100px; color:var(--text-dim); transition:border-color .2s ease, color .2s ease; }
+  .invest-others a:hover{ border-color:rgba(245,243,239,0.3); color:var(--text); }
+
+  .cta{ text-align:center; padding:120px 0; position:relative; overflow:hidden; }
+  .cta::before{
+    content:''; position:absolute; left:50%; top:0; transform:translateX(-50%); width:900px; height:500px;
+    background:radial-gradient(ellipse at center, rgba(232,73,154,0.16), transparent 70%);
+    filter:blur(30px); pointer-events:none;
+  }
+  .cta h2{ max-width:680px; margin:0 auto 20px; }
+  .cta p{ color:var(--text-dim); font-size:16.5px; max-width:480px; margin:0 auto 36px; }
+
+  @media (max-width:860px){
+    .examples-grid{ grid-template-columns:1fr; }
+    .invest-band{ flex-direction:column; align-items:flex-start; }
+    .invest-duo{ grid-template-columns:1fr; }
+    .hero{ padding:150px 0 70px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo">
+      <span class="logo-bars"><span></span><span></span><span></span><span></span><span></span></span>
+      MEXAICAN
+    </a>
+    <div class="navlinks">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="plataformas.html">Plataformas</a>
+      <a href="recursos.html">Recursos</a>
+    </div>
+    <a class="nav-cta" href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener">Agenda una llamada</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dot"></span> Mex AI Can — The Mexican Artificial Intelligence Company</div>
+      <h1 class="hero-title">
+        Construimos la plataforma de datos que tu<br>
+        <span class="rotator"><span class="rotator-track" id="rotatorTrack">
+          <span class="rotator-word">gimnasio</span>
+        </span></span><br>
+        necesita para decidir mejor.
+      </h1>
+      <p class="hero-sub">MEXAICAN diseña y construye plataformas de análisis de datos a la medida — desde un dashboard ejecutivo hasta un sistema completo de inteligencia operativa — para empresas chicas, medianas y pymes de toda Latinoamérica.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener">
+          Agenda una llamada
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn-ghost" href="plataformas.html">Ver plataformas</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker-band">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Dos formas de trabajar con nosotros</span>
+        <h2>Una plataforma 100% a tu medida, o un SaaS listo para usar hoy.</h2>
+      </div>
+      <div class="examples-grid">
+        <div class="example-card card-sunai reveal">
+          <span class="example-tag">Desarrollo a la medida</span>
+          <h3>SunAI</h3>
+          <p>Plataforma construida 100% a la medida para visualizar los datos de almacén de una empresa de manufactura global: inventario, compras, órdenes de compra y ventas, todo en un solo lugar. Cero plantillas: arquitectura e integraciones pensadas desde cero para su operación.</p>
+          <a class="example-link" href="https://www.supplynextai.com/" target="_blank" rel="noopener">Ver el caso completo →</a>
+        </div>
+        <div class="example-card card-pooly reveal">
+          <span class="example-tag">SaaS listo para usar</span>
+          <h3>Pooly</h3>
+          <p>El primer paso para conocer de verdad a tus clientes. Convierte encuestas y comentarios en sentimiento, temas y recomendaciones claras — sin desarrollo, desde $19 USD.</p>
+          <a class="example-link" href="https://pooly.mx" target="_blank" rel="noopener">Ir a pooly.mx →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" style="border-top:1px solid var(--line); background:var(--bg-2);">
+    <div class="wrap">
+      <div class="section-head reveal" style="margin-bottom:36px;">
+        <span class="kicker">Por dónde empezar</span>
+        <h2>Elige el tamaño de proyecto que le queda a tu negocio.</h2>
+      </div>
+      <div class="invest-duo reveal">
+        <div class="invest-card frugal">
+          <span class="kicker" style="color:#c77dff;">Para pymes en crecimiento</span>
+          <h3 style="font-weight:700; font-size:22px;">Automatización Frugal</h3>
+          <div class="big-num">$50k – $200k <span>MXN</span></div>
+          <p>El punto de partida para negocios pequeños: un proceso, un reporte o una automatización, bien resuelto, en 3 a 6 semanas — sin comprometer tu flujo de caja.</p>
+          <a class="btn-ghost invest-link" href="plataformas.html#inversion">Ver si tu negocio encaja →</a>
+        </div>
+        <div class="invest-card">
+          <span class="kicker">Inversión de referencia</span>
+          <h3 style="font-weight:700; font-size:22px;">Plataformas a la medida</h3>
+          <div class="big-num">$80k <span>MXN en adelante</span></div>
+          <p>Una plataforma de datos a la medida, del tamaño típico de una pyme, toma entre 4 y 12 semanas. Proyectos tipo SaaS o multi-sucursal suben de rango.</p>
+          <a class="btn-ghost invest-link" href="plataformas.html#inversion">Ver todos los rangos →</a>
+        </div>
+      </div>
+      <div class="invest-others reveal">
+        <span class="label">También construimos:</span>
+        <a href="plataformas.html#inversion">Automatización puntual con IA</a>
+        <a href="plataformas.html#inversion">Sistema web a la medida</a>
+        <a href="plataformas.html#inversion">Plataforma multi-rol o multi-sucursal</a>
+        <a href="plataformas.html#inversion">Producto tipo SaaS propio</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <span class="kicker">Empecemos</span>
+      <h2>Agenda una llamada y revisamos tu negocio juntos.</h2>
+      <p>Sin presentación de ventas. Vemos tu operación, tus datos y dónde exactamente podemos generar valor. También puedes escribirnos directo a <a href="mailto:info@mexaican.com" style="text-decoration:underline;">info@mexaican.com</a>.</p>
+      <a class="btn-primary" href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener">
+        Agendar llamada con MEXAICAN
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-bars"><span></span><span></span><span></span><span></span><span></span></span>
+          MEXAICAN
+        </div>
+        <p>Mex AI Can — The Mexican Artificial Intelligence Company. Construimos plataformas de datos para negocios de cualquier tamaño en Latinoamérica.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/somosmexaican/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@somosmexaican" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82c-.9-.78-1.47-1.9-1.6-3.13h-3.05v13.3c0 1.62-1.32 2.94-2.94 2.94a2.94 2.94 0 0 1 0-5.88c.28 0 .55.04.8.11V9.9c-.27-.04-.53-.06-.8-.06-3.28 0-5.94 2.66-5.94 5.94S6.22 21.72 9.5 21.72s5.94-2.66 5.94-5.94V9.01a8.5 8.5 0 0 0 4.6 1.34V7.3c-1.24 0-2.46-.42-3.44-1.48z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/somosmexaican" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.25h4.48V23H.24V8.25zM8.06 8.25h4.29v2.02h.06c.6-1.13 2.06-2.33 4.24-2.33 4.53 0 5.37 2.98 5.37 6.86V23h-4.47v-6.34c0-1.51-.03-3.46-2.11-3.46-2.11 0-2.44 1.65-2.44 3.35V23H8.06V8.25z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Sitio</h5>
+          <a href="index.html">Inicio</a>
+          <a href="plataformas.html">Plataformas</a>
+          <a href="recursos.html">Recursos</a>
+        </div>
+        <div class="footer-col">
+          <h5>Plataformas</h5>
+          <a href="https://pooly.mx" target="_blank" rel="noopener">Pooly</a>
+          <a href="https://www.supplynextai.com/" target="_blank" rel="noopener">SunAI</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contacto</h5>
+          <a href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener">Agendar llamada</a>
+          <a href="mailto:info@mexaican.com">info@mexaican.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© <span id="year"></span> MEXAICAN. Guadalajara, México.</div>
+      <div class="footer-bars">
+        <span style="background:var(--purple)"></span>
+        <span style="background:var(--pink)"></span>
+        <span style="background:var(--orange)"></span>
+        <span style="background:var(--yellow)"></span>
+        <span style="background:var(--blue)"></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el=> io.observe(el));
+
+  (function(){
+    const words = ['gimnasio','restaurante','tienda en línea','estudio de belleza','manufactura','cadena de hoteles'];
+    const track = document.getElementById('rotatorTrack');
+    let i = 0;
+    setInterval(()=>{
+      i = (i+1) % words.length;
+      const el = document.createElement('span');
+      el.className = 'rotator-word';
+      el.textContent = words[i];
+      track.style.transition = 'transform .5s cubic-bezier(.16,1,.3,1)';
+      track.appendChild(el);
+      track.style.transform = `translateY(-${(track.children.length-1)*1.1}em)`;
+      if(track.children.length > 3){
+        setTimeout(()=>{
+          track.style.transition='none';
+          track.innerHTML = '';
+          const first = document.createElement('span');
+          first.className='rotator-word';
+          first.textContent = words[i];
+          track.appendChild(first);
+          track.style.transform='translateY(0)';
+        }, 520);
+      }
+    }, 2400);
+  })();
+
+  (function(){
+    const items = [
+      'Dashboards ejecutivos','Automatización Frugal para pymes','Predicción de demanda',
+      'Reportes en minutos, no en semanas','Integraciones con tus sistemas',
+      'Análisis de sentimiento de clientes','Visibilidad de almacén en tiempo real'
+    ];
+    const colors = ['#7b3fc4','#e8499a','#f07830','#f5c842','#4aa8f5'];
+    const track = document.getElementById('tickerTrack');
+    const build = ()=> items.map((t,i)=>`<span class="ticker-item"><span class="sep" style="background:${colors[i%colors.length]}"></span>${t}</span>`).join('');
+    track.innerHTML = build() + build();
+  })();
+</script>
+
+</body>
+</html>

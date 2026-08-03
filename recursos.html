@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recursos — IA en Latinoamérica | MEXAICAN</title>
+<meta name="description" content="Artículos de MEXAICAN sobre inteligencia artificial, datos y decisiones para empresas latinoamericanas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg: #08080a;
+  --bg-2: #0f0f13;
+  --surface: #16161c;
+  --surface-2: #1c1c24;
+  --line: rgba(245,243,239,0.09);
+  --text: #f5f3ef;
+  --text-dim: #a6a4ab;
+  --text-faint: #6c6a72;
+
+  --purple: #7b3fc4;
+  --yellow: #f5c842;
+  --pink: #e8499a;
+  --blue: #4aa8f5;
+  --orange: #f07830;
+
+  --display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono: 'Space Grotesk', monospace;
+
+  --maxw: 1180px;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{ background:var(--purple); color:#fff; }
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+
+a{color:inherit; text-decoration:none;}
+img,svg{display:block; max-width:100%;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+section{position:relative;}
+ul{list-style:none;}
+
+.grain{
+  pointer-events:none; position:fixed; inset:0; z-index:2; opacity:0.035; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- nav ---------- */
+header{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  background:rgba(8,8,10,0.72); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+nav{
+  max-width:var(--maxw); margin:0 auto; padding:18px 32px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.logo{
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--display); font-weight:700; font-size:19px; letter-spacing:-0.01em;
+}
+.logo-bars{ display:flex; gap:3px; align-items:flex-end; height:16px; }
+.logo-bars span{ width:3px; display:block; border-radius:1px; }
+.logo-bars span:nth-child(1){ background:var(--purple); height:60%; }
+.logo-bars span:nth-child(2){ background:var(--pink); height:100%; }
+.logo-bars span:nth-child(3){ background:var(--orange); height:45%; }
+.logo-bars span:nth-child(4){ background:var(--yellow); height:80%; }
+.logo-bars span:nth-child(5){ background:var(--blue); height:65%; }
+
+.navlinks{ display:flex; gap:34px; font-size:14.5px; color:var(--text-dim); }
+.navlinks a{ transition:color .2s ease; position:relative; }
+.navlinks a:hover{ color:var(--text); }
+.navlinks a.active{ color:var(--text); }
+.navlinks a.active::after{
+  content:''; position:absolute; left:0; right:0; bottom:-20px; height:2px;
+  background:linear-gradient(90deg,var(--purple),var(--pink),var(--orange));
+}
+
+.nav-cta{
+  font-size:14px; font-weight:600; padding:10px 20px; border-radius:100px;
+  background:var(--text); color:var(--bg);
+  transition:transform .2s ease, box-shadow .2s ease;
+  white-space:nowrap;
+}
+.nav-cta:hover{ transform:translateY(-1px); box-shadow:0 8px 24px rgba(245,243,239,0.18); }
+
+/* ---------- shared buttons ---------- */
+.btn-primary{
+  font-weight:600; font-size:15px; padding:15px 28px; border-radius:100px;
+  background:linear-gradient(90deg, var(--purple), var(--pink)); color:#fff;
+  transition:transform .2s ease, box-shadow .2s ease;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(232,73,154,0.35); }
+.btn-ghost{
+  font-weight:600; font-size:15px; padding:15px 24px; border-radius:100px;
+  border:1px solid var(--line); color:var(--text);
+  transition:border-color .2s ease, background .2s ease;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.btn-ghost:hover{ border-color:rgba(245,243,239,0.35); background:rgba(255,255,255,0.03); }
+
+/* ---------- section shell ---------- */
+.section{ padding:110px 0; }
+.section-tight{ padding:70px 0; }
+.section-head{ max-width:640px; margin-bottom:56px; }
+.kicker{
+  font-family:var(--mono); font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--orange); margin-bottom:16px; display:block;
+}
+h1,h2,h3{ font-family:var(--display); letter-spacing:-0.015em; }
+h2{ font-weight:700; font-size:clamp(28px, 3.6vw, 42px); line-height:1.12; }
+.section-head p{ margin-top:18px; color:var(--text-dim); font-size:16.5px; line-height:1.65; }
+
+/* ---------- reveal ---------- */
+.reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.in{ opacity:1; transform:translateY(0); }
+
+/* ---------- footer ---------- */
+footer{ border-top:1px solid var(--line); padding:64px 0 40px; }
+.footer-top{ display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap; margin-bottom:56px; }
+.footer-brand p{ color:var(--text-dim); font-size:14px; max-width:280px; margin-top:14px; line-height:1.6; }
+.footer-cols{ display:flex; gap:64px; flex-wrap:wrap; }
+.footer-col h5{ font-family:var(--mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-faint); margin-bottom:16px; }
+.footer-col a{ display:block; font-size:14px; color:var(--text-dim); margin-bottom:11px; transition:color .2s ease; }
+.footer-col a:hover{ color:var(--text); }
+.footer-social{ display:flex; gap:12px; margin-top:18px; }
+.footer-social a{
+  width:38px; height:38px; border:1px solid var(--line); border-radius:50%;
+  display:flex; align-items:center; justify-content:center; transition:border-color .2s ease, transform .2s ease, background .2s ease;
+}
+.footer-social a:hover{ border-color:rgba(245,243,239,0.35); background:rgba(255,255,255,0.04); transform:translateY(-2px); }
+.footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:28px; border-top:1px solid var(--line); font-size:12.5px; color:var(--text-faint); flex-wrap:wrap; gap:12px; }
+.footer-bars{ display:flex; gap:3px; }
+.footer-bars span{ width:16px; height:4px; border-radius:2px; }
+
+@media (max-width:860px){
+  .navlinks{ display:none; }
+  .footer-top{ flex-direction:column; gap:40px; }
+}
+
+</style>
+<style>
+  .page-hero{ padding:170px 0 60px; }
+  .page-hero h1{ font-weight:700; font-size:clamp(32px,5vw,54px); line-height:1.08; max-width:700px; }
+  .page-hero p{ margin-top:20px; max-width:540px; font-size:17px; color:var(--text-dim); line-height:1.6; }
+
+  .articles{ display:flex; flex-direction:column; gap:16px; padding-bottom:120px; }
+  .article{
+    border:1px solid var(--line); border-radius:20px; background:var(--surface); overflow:hidden;
+    transition:border-color .25s ease;
+  }
+  .article[open]{ border-color:rgba(245,243,239,0.2); }
+  .article summary{
+    list-style:none; cursor:pointer; padding:30px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px;
+  }
+  .article summary::-webkit-details-marker{ display:none; }
+  .article-meta{ display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+  .article-read{ font-family:var(--mono); font-size:12px; color:var(--text-faint); padding:3px 10px; border:1px solid var(--line); border-radius:100px; }
+  .article summary h3{ font-weight:700; font-size:20px; line-height:1.3; max-width:720px; }
+  .article-toggle{
+    width:38px; height:38px; border-radius:50%; border:1px solid var(--line); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; transition:transform .3s ease, background .3s ease;
+  }
+  .article[open] .article-toggle{ transform:rotate(45deg); background:rgba(255,255,255,0.05); }
+  .article-body{ padding:0 32px 34px; display:grid; grid-template-columns:200px 1fr; gap:28px; align-items:start; }
+  .article-graphic{ width:200px; height:220px; border-radius:14px; background:var(--bg-2); border:1px solid var(--line); padding:14px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .article-text p{ color:var(--text-dim); font-size:15px; line-height:1.72; margin-bottom:16px; }
+  .article-text p:last-child{ margin-bottom:0; }
+  .article-text strong{ color:var(--text); font-weight:600; }
+  .article-tag{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--text-faint); margin-bottom:0;
+  }
+
+  @media (max-width:780px){
+    .article summary{ padding:24px 22px; }
+    .article-body{ padding:0 22px 28px; grid-template-columns:1fr; }
+    .article-graphic{ width:100%; height:140px; order:-1; }
+    .article summary h3{ font-size:17.5px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo">
+      <span class="logo-bars"><span></span><span></span><span></span><span></span><span></span></span>
+      MEXAICAN
+    </a>
+    <div class="navlinks">
+      <a href="index.html">Inicio</a>
+      <a href="plataformas.html">Plataformas</a>
+      <a href="recursos.html" class="active">Recursos</a>
+    </div>
+    <a class="nav-cta" href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener">Agenda una llamada</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="page-hero wrap">
+    <span class="kicker">Recursos</span>
+    <h1>Ideas sobre datos, IA y decisiones para negocios latinoamericanos.</h1>
+    <p>Notas cortas desde lo que vemos construyendo plataformas para empresas reales en la región — no teoría genérica de IA. ¿Preguntas? Escríbenos a <a href="mailto:info@mexaican.com" style="text-decoration:underline;">info@mexaican.com</a>.</p>
+  </section>
+
+  <section class="wrap">
+    <div class="articles">
+
+      <details class="article" open>
+        <summary>
+          <div>
+            <div class="article-meta">
+              <span class="article-read">4 min de lectura</span>
+            </div>
+            <h3>El verdadero cuello de botella de la IA en las pymes latinoamericanas no es la tecnología</h3>
+          </div>
+          <div class="article-toggle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="article-body">
+          <div class="article-graphic">
+            <svg viewBox="0 0 200 240" width="100%" height="100%">
+              <circle cx="60" cy="30" r="5" fill="#7b3fc4"/><circle cx="130" cy="55" r="5" fill="#e8499a"/>
+              <circle cx="90" cy="70" r="5" fill="#f07830"/><circle cx="160" cy="20" r="5" fill="#f5c842"/>
+              <circle cx="35" cy="60" r="5" fill="#4aa8f5"/><circle cx="115" cy="35" r="5" fill="#7b3fc4"/>
+              <line x1="100" y1="100" x2="100" y2="200" stroke="#2a2a33" stroke-width="2" stroke-dasharray="1 8" stroke-linecap="round"/>
+              <circle cx="100" cy="120" r="6" fill="#7b3fc4"/><circle cx="100" cy="150" r="6" fill="#e8499a"/>
+              <circle cx="100" cy="180" r="6" fill="#f07830"/><circle cx="100" cy="210" r="6" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="article-text">
+          <p>Cuando una pyme en México o Colombia decide "meterle IA" al negocio, casi siempre el proyecto se detiene antes de escribir una línea de código: se detiene en la etapa de recolectar y ordenar la información. No es un problema de modelos ni de proveedores — es que los datos viven repartidos entre WhatsApp, un Excel del encargado de sucursal y la memoria de quien lleva quince años en el negocio.</p>
+          <p>Por eso, en <strong>MEXAICAN</strong> el primer entregable casi nunca es un modelo predictivo sofisticado. Es una forma simple de que toda esa información dispersa llegue a un solo lugar, en un formato que alguien sin conocimientos técnicos pueda leer y usar el mismo día. La inteligencia artificial resuelve muy poco si antes no existe un canal limpio para que los datos lleguen ahí.</p>
+          <p>La lección práctica: antes de preguntar qué modelo de IA usar, pregunta quién en tu equipo va a mirar el resultado cada semana y qué decisión concreta va a tomar con él. Si no hay respuesta clara a eso, el proyecto todavía no está listo para IA — está listo para ordenar datos.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="article">
+        <summary>
+          <div>
+            <div class="article-meta">
+              <span class="article-read">3 min de lectura</span>
+            </div>
+            <h3>Por qué la mayoría de los dashboards nunca cambian una decisión</h3>
+          </div>
+          <div class="article-toggle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="article-body">
+          <div class="article-graphic">
+            <svg viewBox="0 0 200 240" width="100%" height="100%">
+              <rect x="20" y="15" width="160" height="50" rx="8" fill="none" stroke="#2a2a33" stroke-width="2"/>
+              <rect x="35" y="30" width="120" height="6" rx="3" fill="#3a3a45"/>
+              <rect x="35" y="43" width="80" height="6" rx="3" fill="#3a3a45"/>
+              <rect x="20" y="80" width="160" height="50" rx="8" fill="none" stroke="#2a2a33" stroke-width="2"/>
+              <rect x="35" y="95" width="120" height="6" rx="3" fill="#3a3a45"/>
+              <rect x="35" y="108" width="90" height="6" rx="3" fill="#3a3a45"/>
+              <rect x="14" y="150" width="172" height="70" rx="10" fill="none" stroke="#4aa8f5" stroke-width="2.5"/>
+              <circle cx="34" cy="167" r="4" fill="#4aa8f5"/>
+              <rect x="34" y="182" width="134" height="7" rx="3.5" fill="#4aa8f5"/>
+              <rect x="34" y="199" width="90" height="7" rx="3.5" fill="#4aa8f5"/>
+            </svg>
+          </div>
+          <div class="article-text">
+          <p>Existe un patrón que se repite en casi cualquier empresa que ya invirtió en un dashboard: se usó con entusiasmo el primer mes y hoy nadie lo abre. El problema rara vez es visual. Es que el dashboard describe el pasado con precisión, pero no le dice a nadie qué hacer distinto mañana.</p>
+          <p>Un dashboard útil no es el que tiene más gráficas — es el que responde una pregunta operativa concreta con la urgencia correcta: qué sucursal necesita atención esta semana, qué producto va a quedarse sin stock, qué comentario de cliente hay que escalar hoy. Todo lo demás es decoración que compite por atención con lo que sí importa.</p>
+          <p>Esta es la diferencia entre reportar y traducir. Reportar es mostrar números. Traducir es convertir esos números en la frase que un gerente puede repetir en una junta: "hagamos esto, por esta razón, esta semana". Ese es el estándar con el que diseñamos cada plataforma que construimos.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="article">
+        <summary>
+          <div>
+            <div class="article-meta">
+              <span class="article-read">4 min de lectura</span>
+            </div>
+            <h3>Automatización con IA en manufactura: lo que aprendimos construyendo SunAI</h3>
+          </div>
+          <div class="article-toggle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="article-body">
+          <div class="article-graphic">
+            <svg viewBox="0 0 200 240" width="100%" height="100%">
+              <rect x="15" y="150" width="26" height="70" rx="3" fill="#f07830" opacity="0.85"/>
+              <rect x="52" y="100" width="26" height="120" rx="3" fill="#f5c842" opacity="0.85"/>
+              <rect x="89" y="170" width="26" height="50" rx="3" fill="#f07830" opacity="0.85"/>
+              <rect x="126" y="60" width="26" height="160" rx="3" fill="#f5c842" opacity="0.85"/>
+              <rect x="163" y="130" width="26" height="90" rx="3" fill="#f07830" opacity="0.85"/>
+              <line x1="10" y1="222" x2="195" y2="222" stroke="#2a2a33" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="article-text">
+          <p>Construir SunAI, nuestra plataforma para visualizar los datos de almacén de una empresa de manufactura con operación global — inventario, compras, órdenes de compra y ventas — nos dejó una convicción clara: la integración operativa profunda importa más que el algoritmo detrás del sistema. Dos empresas del mismo sector pueden manejar su almacén de formas casi opuestas — distintas reglas de reorden, distintas prioridades entre líneas de producto, distintas señales de alerta temprana.</p>
+          <p>Un producto genérico obliga a la empresa a adaptar su operación al software. Una plataforma a la medida hace lo contrario: se adapta ella al proceso real del negocio. Esa fue la apuesta con SunAI — construir las reglas de negocio de la empresa dentro del sistema, no forzarla a aprender las reglas de un sistema ajeno.</p>
+          <p>El resultado no fue solo un dashboard más bonito que una hoja de cálculo. Fue visibilidad en conjunto de toda la operación, con alertas que reflejan cómo esa empresa específica define "un problema de inventario" — no cómo lo define un producto pensado para cualquier fábrica del mundo.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="article">
+        <summary>
+          <div>
+            <div class="article-meta">
+              <span class="article-read">3 min de lectura</span>
+            </div>
+            <h3>SaaS vs. a la medida: cómo elegir la plataforma correcta para tu negocio</h3>
+          </div>
+          <div class="article-toggle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="article-body">
+          <div class="article-graphic">
+            <svg viewBox="0 0 200 240" width="100%" height="100%">
+              <circle cx="100" cy="55" r="36" fill="none" stroke="#4aa8f5" stroke-width="2.5"/>
+              <text x="100" y="60" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="13" fill="#7fbcf7">SaaS</text>
+              <circle cx="100" cy="185" r="36" fill="none" stroke="#f07830" stroke-width="2.5"/>
+              <text x="100" y="182" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="10.5" fill="#f5a06a">A la</text>
+              <text x="100" y="196" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="10.5" fill="#f5a06a">medida</text>
+              <path d="M100 95 L100 145" stroke="#2a2a33" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round"/>
+              <text x="100" y="124" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="10" fill="#6c6a72">¿CUÁL?</text>
+            </svg>
+          </div>
+          <div class="article-text">
+          <p>La pregunta no es cuál opción es mejor en general, sino cuál corresponde al momento de tu negocio. Un SaaS como Pooly tiene sentido cuando el problema que quieres resolver es común a muchas empresas parecidas a la tuya — conocer a tus clientes, por ejemplo — y cuando quieres resultados esta semana, no este trimestre.</p>
+          <p>Una plataforma a la medida tiene sentido cuando tu proceso de negocio ya es distinto al de tus competidores, cuando necesitas integraciones profundas con sistemas que ya usas, o cuando la ventaja competitiva que buscas depende precisamente de que nadie más tenga esa misma herramienta.</p>
+          <p>En la práctica, muchas empresas hacen ambas cosas en momentos distintos: empiezan con un SaaS para validar qué preguntas importan de verdad, y cuando ese proceso ya probó su valor, construyen una plataforma propia alrededor de él. No es una decisión de una sola vez — es una decisión que revisamos contigo cada vez que tu negocio cambia de escala.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="article">
+        <summary>
+          <div>
+            <div class="article-meta">
+              <span class="article-read">3 min de lectura</span>
+            </div>
+            <h3>Qué es la innovación frugal, y por qué le queda bien a las pymes latinoamericanas</h3>
+          </div>
+          <div class="article-toggle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="article-body">
+          <div class="article-graphic">
+            <svg viewBox="0 0 200 240" width="100%" height="100%">
+              <polyline points="20,210 70,175 100,185 130,120 150,130 180,55" fill="none" stroke="#c77dff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="20" cy="210" r="5" fill="#c77dff"/><circle cx="70" cy="175" r="5" fill="#c77dff"/>
+              <circle cx="100" cy="185" r="5" fill="#c77dff"/><circle cx="130" cy="120" r="5" fill="#c77dff"/>
+              <circle cx="150" cy="130" r="5" fill="#c77dff"/><circle cx="180" cy="55" r="7" fill="#f5c842"/>
+              <text x="180" y="38" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="14" fill="#f5c842">+</text>
+            </svg>
+          </div>
+          <div class="article-text">
+          <p>La innovación frugal nació de una pregunta muy concreta: ¿cómo resolver un problema real con menos recursos de los que "deberías" necesitar, sin que la solución se sienta pobre? No es hacer una versión barata de algo grande — es rediseñar el problema hasta encontrar la versión más simple que sigue generando el mismo valor.</p>
+          <p>Para una pyme latinoamericana esto no es una filosofía de diseño, es supervivencia inteligente. La mayoría no necesita un sistema con veinte módulos y tres años de desarrollo — necesita que un problema específico deje de robarle tiempo y dinero esta misma temporada. <strong>Automatización Frugal</strong> es nuestra forma de aplicar esta lógica: entender exactamente qué parte de tu operación duele más, y construir solo eso, bien hecho.</p>
+          <p>La innovación frugal también cambia la relación entre quien construye y quien usa la herramienta. En vez de un proyecto cerrado que termina en la entrega, se vuelve el primer paso de una relación que crece junto con el negocio — hoy resolvemos lo urgente, y después seguimos construyendo sobre esa base.</p>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-bars"><span></span><span></span><span></span><span></span><span></span></span>
+          MEXAICAN
+        </div>
+        <p>Mex AI Can — The Mexican Artificial Intelligence Company. Construimos plataformas de datos para negocios de cualquier tamaño en Latinoamérica.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/somosmexaican/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@somosmexaican" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82c-.9-.78-1.47-1.9-1.6-3.13h-3.05v13.3c0 1.62-1.32 2.94-2.94 2.94a2.94 2.94 0 0 1 0-5.88c.28 0 .55.04.8.11V9.9c-.27-.04-.53-.06-.8-.06-3.28 0-5.94 2.66-5.94 5.94S6.22 21.72 9.5 21.72s5.94-2.66 5.94-5.94V9.01a8.5 8.5 0 0 0 4.6 1.34V7.3c-1.24 0-2.46-.42-3.44-1.48z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/somosmexaican" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.25h4.48V23H.24V8.25zM8.06 8.25h4.29v2.02h.06c.6-1.13 2.06-2.33 4.24-2.33 4.53 0 5.37 2.98 5.37 6.86V23h-4.47v-6.34c0-1.51-.03-3.46-2.11-3.46-2.11 0-2.44 1.65-2.44 3.35V23H8.06V8.25z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Sitio</h5>
+          <a href="index.html">Inicio</a>
+          <a href="plataformas.html">Plataformas</a>
+          <a href="recursos.html">Recursos</a>
+        </div>
+        <div class="footer-col">
+          <h5>Plataformas</h5>
+          <a href="https://pooly.mx" target="_blank" rel="noopener">Pooly</a>
+          <a href="https://www.supplynextai.com/" target="_blank" rel="noopener">SunAI</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contacto</h5>
+          <a href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener">Agendar llamada</a>
+          <a href="mailto:info@mexaican.com">info@mexaican.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© <span id="year"></span> MEXAICAN. Guadalajara, México.</div>
+      <div class="footer-bars">
+        <span style="background:var(--purple)"></span>
+        <span style="background:var(--pink)"></span>
+        <span style="background:var(--orange)"></span>
+        <span style="background:var(--yellow)"></span>
+        <span style="background:var(--blue)"></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>
