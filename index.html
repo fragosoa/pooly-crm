@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MEXAICAN — Plataformas de datos para tomar decisiones, no para acumular reportes</title>
-<meta name="description" content="MEXAICAN construye plataformas de análisis de datos a la medida para empresas de cualquier tamaño en Latinoamérica. Conoce SunAI y Pooly.">
+<meta name="description" content="MEXAICAN construye plataformas de análisis de datos a la medida para empresas de cualquier tamaño en Latinoamérica. Conoce SunAI, Pooly y Datos Accesibles, Accionables Inteligentes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+
 :root{
   --bg: #08080a;
   --bg-2: #0f0f13;
@@ -97,6 +98,13 @@ nav{
 }
 .nav-cta:hover{ transform:translateY(-1px); box-shadow:0 8px 24px rgba(245,243,239,0.18); }
 
+.lang-toggle{
+  font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:0.04em;
+  padding:8px 14px; border-radius:100px; border:1px solid var(--line); background:transparent; color:var(--text-dim);
+  cursor:pointer; transition:border-color .2s ease, color .2s ease, background .2s ease;
+}
+.lang-toggle:hover{ border-color:rgba(245,243,239,0.35); color:var(--text); background:rgba(255,255,255,0.03); }
+
 /* ---------- shared buttons ---------- */
 .btn-primary{
   font-weight:600; font-size:15px; padding:15px 28px; border-radius:100px;
@@ -152,8 +160,13 @@ footer{ border-top:1px solid var(--line); padding:64px 0 40px; }
   .footer-top{ flex-direction:column; gap:40px; }
 }
 
-</style>
-<style>
+
+
+  .page{ display:none; }
+  .page.active{ display:block; }
+
+  /* ===== INICIO ===== */
+
   .hero{ padding:180px 0 90px; position:relative; overflow:hidden; }
   .hero::before{
     content:''; position:absolute; top:-200px; right:-160px; width:640px; height:640px; border-radius:50%;
@@ -189,6 +202,7 @@ footer{ border-top:1px solid var(--line); padding:64px 0 40px; }
   .example-card{
     border:1px solid var(--line); border-radius:24px; padding:36px; background:var(--surface);
     position:relative; overflow:hidden; transition:transform .3s ease, border-color .3s ease;
+    display:flex; flex-direction:column;
   }
   .example-card:hover{ transform:translateY(-4px); border-color:rgba(245,243,239,0.18); }
   .example-card::before{ content:''; position:absolute; top:0; left:0; right:0; height:4px; }
@@ -201,8 +215,8 @@ footer{ border-top:1px solid var(--line); padding:64px 0 40px; }
   .card-sunai .example-tag{ background:rgba(240,120,48,0.14); color:#f5a06a; }
   .card-pooly .example-tag{ background:rgba(74,168,245,0.14); color:#7fbcf7; }
   .example-card h3{ font-weight:700; font-size:23px; margin-bottom:10px; }
-  .example-card p{ color:var(--text-dim); font-size:14.5px; line-height:1.6; margin-bottom:22px; }
-  .example-link{ font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:6px; }
+  .example-card p{ color:var(--text-dim); font-size:14.5px; line-height:1.6; margin-bottom:22px; flex-grow:1; }
+  .example-link{ font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:6px; margin-top:auto; }
   .card-sunai .example-link{ color:#f5a06a; }
   .card-pooly .example-link{ color:#7fbcf7; }
 
@@ -241,6 +255,145 @@ footer{ border-top:1px solid var(--line); padding:64px 0 40px; }
     .invest-duo{ grid-template-columns:1fr; }
     .hero{ padding:150px 0 70px; }
   }
+
+  /* ===== PLATAFORMAS ===== */
+
+  .page-hero{ padding:170px 0 70px; }
+  .page-hero h1{ font-weight:700; font-size:clamp(32px,5vw,54px); line-height:1.08; max-width:760px; }
+  .page-hero p{ margin-top:20px; max-width:560px; font-size:17px; color:var(--text-dim); line-height:1.6; }
+
+  .feature-block{ padding:80px 0; border-top:1px solid var(--line); }
+  .feature-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:center; }
+  .feature-grid.reverse .feature-copy{ order:2; }
+  .feature-tag{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase;
+    padding:5px 11px; border-radius:100px; display:inline-block; margin-bottom:20px;
+  }
+  .tag-sunai{ background:rgba(240,120,48,0.14); color:#f5a06a; }
+  .tag-pooly{ background:rgba(74,168,245,0.14); color:#7fbcf7; }
+  .tag-frugal{ background:rgba(199,125,255,0.14); color:#c77dff; }
+  .feature-copy h2{ margin-bottom:16px; }
+  .feature-copy p.desc{ color:var(--text-dim); font-size:15.5px; line-height:1.68; margin-bottom:24px; }
+  .feature-list{ display:flex; flex-direction:column; gap:14px; margin-bottom:28px; }
+  .feature-list div{ display:flex; gap:10px; font-size:14.5px; color:var(--text-dim); align-items:flex-start; }
+  .feature-list svg{ flex-shrink:0; margin-top:3px; }
+  .feature-visual{
+    border-radius:24px; border:1px solid var(--line); background:var(--surface); padding:32px;
+    aspect-ratio:4/3.2; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden;
+  }
+  .visual-sunai{ background:linear-gradient(160deg, #1c1408, var(--surface) 55%); }
+  .visual-pooly{ background:linear-gradient(160deg, #071224, var(--surface) 55%); }
+  .visual-frugal{ background:linear-gradient(160deg, #1c0f28, var(--surface) 55%); }
+  .visual-label{ font-family:var(--mono); font-size:11.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.08em; }
+  .bar-chart{ display:flex; align-items:flex-end; gap:8px; height:120px; margin:20px 0; }
+  .bar-chart div{ flex:1; border-radius:4px 4px 0 0; }
+  .sentiment-rows{ display:flex; flex-direction:column; gap:10px; }
+  .sentiment-row{ display:flex; align-items:center; gap:10px; font-size:12.5px; color:var(--text-dim); }
+  .sentiment-fill{ height:6px; border-radius:3px; flex:1; background:var(--surface-2); overflow:hidden; }
+  .sentiment-fill span{ display:block; height:100%; border-radius:3px; }
+
+  .cap-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .cap-card{ border:1px solid var(--line); border-radius:20px; padding:28px; background:var(--surface); transition:transform .3s ease, border-color .3s ease; }
+  .cap-card:hover{ transform:translateY(-3px); border-color:rgba(245,243,239,0.18); }
+  .cap-icon{ width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
+  .cap-card h4{ font-weight:700; font-size:16px; margin-bottom:8px; }
+  .cap-card p{ font-size:13.5px; color:var(--text-dim); line-height:1.55; }
+
+  .invest-group{ display:flex; flex-direction:column; gap:16px; margin-bottom:22px; }
+  .invest-item{ border:1px solid var(--line); border-radius:20px; background:var(--surface); overflow:hidden; transition:border-color .25s ease; }
+  .invest-item[open]{ border-color:rgba(245,243,239,0.22); }
+  .invest-item summary{ list-style:none; cursor:pointer; padding:28px 30px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+  .invest-item summary::-webkit-details-marker{ display:none; }
+  .invest-item-info h4{ font-weight:700; font-size:18px; margin-bottom:4px; }
+  .invest-item-info .sub{ font-size:13.5px; color:var(--text-faint); }
+  .invest-item-figures{ display:flex; gap:28px; font-family:var(--mono); font-size:14px; }
+  .invest-item-figures .price{ color:var(--text); }
+  .invest-item-figures .time{ color:var(--text-faint); }
+  .invest-toggle{ width:34px; height:34px; border-radius:50%; border:1px solid var(--line); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:transform .3s ease, background .3s ease; }
+  .invest-item[open] .invest-toggle{ transform:rotate(45deg); background:rgba(255,255,255,0.05); }
+  .invest-item-body{ padding:0 30px 28px; max-width:640px; }
+  .invest-item-body p{ color:var(--text-dim); font-size:14.5px; line-height:1.68; }
+
+  .invest-compact-wrap{ border:1px solid var(--line); border-radius:20px; overflow:hidden; }
+  .invest-compact-label{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-faint); padding:18px 24px 6px; }
+  .invest-compact-item{ border-top:1px solid var(--line); }
+  .invest-compact-item summary{ list-style:none; cursor:pointer; padding:15px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .invest-compact-item summary::-webkit-details-marker{ display:none; }
+  .invest-compact-item summary h5{ font-size:13.5px; font-weight:600; color:var(--text-dim); }
+  .invest-compact-item summary .figs{ font-family:var(--mono); font-size:12px; color:var(--text-faint); white-space:nowrap; }
+  .invest-compact-body{ padding:0 24px 18px; }
+  .invest-compact-body p{ font-size:13px; color:var(--text-faint); line-height:1.6; max-width:600px; }
+
+  .flow{ display:grid; grid-template-columns:repeat(5,1fr); gap:0; }
+  .flow-step{ padding:0 20px 0 0; position:relative; }
+  .flow-step:not(:last-child)::after{
+    content:''; position:absolute; top:22px; right:-2px; width:calc(100% - 40px); height:1px;
+    background:repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 12px);
+  }
+  .flow-num{ font-family:var(--mono); font-size:13px; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:600; margin-bottom:22px; color:#fff; }
+  .flow-step:nth-child(1) .flow-num{ background:var(--purple); }
+  .flow-step:nth-child(2) .flow-num{ background:var(--pink); }
+  .flow-step:nth-child(3) .flow-num{ background:var(--orange); }
+  .flow-step:nth-child(4) .flow-num{ background:var(--blue); }
+  .flow-step:nth-child(5) .flow-num{ background:linear-gradient(135deg,var(--purple),var(--pink)); }
+  .flow-step h4{ font-weight:700; font-size:16.5px; margin-bottom:8px; }
+  .flow-step p{ font-size:13.5px; color:var(--text-dim); line-height:1.6; }
+
+  .cta-plat{ text-align:center; padding:110px 0; }
+  .cta-plat h2{ max-width:640px; margin:0 auto 18px; }
+  .cta-plat p{ color:var(--text-dim); font-size:16px; max-width:460px; margin:0 auto 32px; }
+
+  @media (max-width:860px){
+    .feature-grid{ grid-template-columns:1fr; }
+    .feature-grid.reverse .feature-copy{ order:0; }
+    .cap-grid{ grid-template-columns:1fr 1fr; }
+    .invest-item summary{ padding:22px 22px; }
+    .invest-item-body{ padding:0 22px 24px; }
+    .flow{ grid-template-columns:1fr 1fr; gap:32px 0; }
+    .flow-step::after{ display:none; }
+  }
+
+  /* ===== RECURSOS ===== */
+
+  .page-hero-r{ padding:170px 0 60px; }
+  .page-hero-r h1{ font-weight:700; font-size:clamp(32px,5vw,54px); line-height:1.08; max-width:700px; }
+  .page-hero-r p{ margin-top:20px; max-width:540px; font-size:17px; color:var(--text-dim); line-height:1.6; }
+
+  .articles{ display:flex; flex-direction:column; gap:16px; padding-bottom:120px; }
+  .article{
+    border:1px solid var(--line); border-radius:20px; background:var(--surface); overflow:hidden;
+    transition:border-color .25s ease;
+  }
+  .article[open]{ border-color:rgba(245,243,239,0.2); }
+  .article summary{
+    list-style:none; cursor:pointer; padding:30px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px;
+  }
+  .article summary::-webkit-details-marker{ display:none; }
+  .article-meta{ display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+  .article-read{ font-family:var(--mono); font-size:12px; color:var(--text-faint); padding:3px 10px; border:1px solid var(--line); border-radius:100px; }
+  .article summary h3{ font-weight:700; font-size:20px; line-height:1.3; max-width:720px; }
+  .article-toggle{
+    width:38px; height:38px; border-radius:50%; border:1px solid var(--line); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; transition:transform .3s ease, background .3s ease;
+  }
+  .article[open] .article-toggle{ transform:rotate(45deg); background:rgba(255,255,255,0.05); }
+  .article-body{ padding:0 32px 34px; display:grid; grid-template-columns:200px 1fr; gap:28px; align-items:start; }
+  .article-graphic{ width:200px; height:220px; border-radius:14px; background:var(--bg-2); border:1px solid var(--line); padding:14px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .article-text p{ color:var(--text-dim); font-size:15px; line-height:1.72; margin-bottom:16px; }
+  .article-text p:last-child{ margin-bottom:0; }
+  .article-text strong{ color:var(--text); font-weight:600; }
+  .article-tag{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--text-faint); margin-bottom:0;
+  }
+
+  @media (max-width:780px){
+    .article summary{ padding:24px 22px; }
+    .article-body{ padding:0 22px 28px; grid-template-columns:1fr; }
+    .article-graphic{ width:100%; height:140px; order:-1; }
+    .article summary h3{ font-size:17.5px; }
+  }
+
 </style>
 </head>
 <body>
@@ -249,38 +402,41 @@ footer{ border-top:1px solid var(--line); padding:64px 0 40px; }
 
 <header>
   <nav>
-    <a href="index.html" class="logo">
+    <a href="/" data-page="inicio" class="logo">
       <span class="logo-bars"><span></span><span></span><span></span><span></span><span></span></span>
       MEXAICAN
     </a>
     <div class="navlinks">
-      <a href="index.html" class="active">Inicio</a>
-      <a href="plataformas.html">Plataformas</a>
-      <a href="recursos.html">Recursos</a>
+      <a href="/" data-page="inicio" class="active" data-i18n="nav-inicio">Inicio</a>
+      <a href="/plataformas" data-page="plataformas" data-i18n="nav-plataformas">Plataformas</a>
+      <a href="/recursos" data-page="recursos" data-i18n="nav-recursos">Recursos</a>
     </div>
-    <a class="nav-cta" href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener">Agenda una llamada</a>
+    <button class="lang-toggle" id="langToggle" type="button">EN</button>
+    <a class="nav-cta" href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener" data-i18n="nav-cta">Agenda una llamada</a>
   </nav>
 </header>
 
 <main>
+  <div id="page-inicio" class="page active">
+
 
   <section class="hero">
     <div class="wrap">
-      <div class="eyebrow"><span class="dot"></span> Mex AI Can — The Mexican Artificial Intelligence Company</div>
+      <div class="eyebrow"><span class="dot"></span> Mex AI Can — IA para LATAM</div>
       <h1 class="hero-title">
-        Construimos la plataforma de datos que tu<br>
+        <span data-i18n="hero-line1">Construimos la plataforma de datos que tu</span><br>
         <span class="rotator"><span class="rotator-track" id="rotatorTrack">
           <span class="rotator-word">gimnasio</span>
         </span></span><br>
-        necesita para decidir mejor.
+        <span data-i18n="hero-line2">necesita para decidir mejor.</span>
       </h1>
-      <p class="hero-sub">MEXAICAN diseña y construye plataformas de análisis de datos a la medida — desde un dashboard ejecutivo hasta un sistema completo de inteligencia operativa — para empresas chicas, medianas y pymes de toda Latinoamérica.</p>
+      <p class="hero-sub" data-i18n="hero-sub">MEXAICAN diseña y construye plataformas de análisis de datos a la medida — desde un dashboard ejecutivo hasta un sistema completo de inteligencia operativa — para empresas chicas, medianas y pymes de toda Latinoamérica.</p>
       <div class="hero-actions">
-        <a class="btn-primary" href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener">
+        <a class="btn-primary" href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener" data-i18n="nav-cta">
           Agenda una llamada
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a class="btn-ghost" href="plataformas.html">Ver plataformas</a>
+        <a class="btn-ghost" href="/plataformas" data-page="plataformas" data-i18n="hero-btn2">Ver plataformas</a>
       </div>
     </div>
   </section>
@@ -292,21 +448,21 @@ footer{ border-top:1px solid var(--line); padding:64px 0 40px; }
   <section class="section">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="kicker">Dos formas de trabajar con nosotros</span>
-        <h2>Una plataforma 100% a tu medida, o un SaaS listo para usar hoy.</h2>
+        <span class="kicker" data-i18n="examples-kicker">Un par de proyectos que hemos desarrollado</span>
+        <h2 data-i18n="examples-h2">Una plataforma 100% a tu medida, o un SaaS listo para usar hoy.</h2>
       </div>
       <div class="examples-grid">
         <div class="example-card card-sunai reveal">
-          <span class="example-tag">Desarrollo a la medida</span>
+          <span class="example-tag" data-i18n="ex-sunai-tag">Desarrollo a la medida</span>
           <h3>SunAI</h3>
-          <p>Plataforma construida 100% a la medida para visualizar los datos de almacén de una empresa de manufactura global: inventario, compras, órdenes de compra y ventas, todo en un solo lugar. Cero plantillas: arquitectura e integraciones pensadas desde cero para su operación.</p>
-          <a class="example-link" href="https://www.supplynextai.com/" target="_blank" rel="noopener">Ver el caso completo →</a>
+          <p data-i18n="ex-sunai-desc">Plataforma construida 100% a la medida para visualizar los datos de almacén de una empresa de manufactura global: inventario, compras, órdenes de compra y ventas, todo en un solo lugar. Cero plantillas: arquitectura e integraciones pensadas desde cero para su operación.</p>
+          <a class="example-link" href="https://www.supplynextai.com/" target="_blank" rel="noopener">supplynextai.com →</a>
         </div>
         <div class="example-card card-pooly reveal">
-          <span class="example-tag">SaaS listo para usar</span>
+          <span class="example-tag" data-i18n="ex-pooly-tag">SaaS listo para usar</span>
           <h3>Pooly</h3>
-          <p>El primer paso para conocer de verdad a tus clientes. Convierte encuestas y comentarios en sentimiento, temas y recomendaciones claras — sin desarrollo, desde $19 USD.</p>
-          <a class="example-link" href="https://pooly.mx" target="_blank" rel="noopener">Ir a pooly.mx →</a>
+          <p data-i18n="ex-pooly-desc">El primer paso para conocer de verdad a tus clientes. Convierte encuestas abiertas y comentarios en sentimiento, temas recurrentes y recomendaciones priorizadas — sin desarrollo, sin esperar semanas, desde $19 USD. Funciona igual de bien para negocios físicos que para e-commerce.</p>
+          <a class="example-link" href="https://pooly.mx" target="_blank" rel="noopener" data-i18n="go-pooly">Ir a pooly.mx →</a>
         </div>
       </div>
     </div>
@@ -315,47 +471,543 @@ footer{ border-top:1px solid var(--line); padding:64px 0 40px; }
   <section class="section-tight" style="border-top:1px solid var(--line); background:var(--bg-2);">
     <div class="wrap">
       <div class="section-head reveal" style="margin-bottom:36px;">
-        <span class="kicker">Por dónde empezar</span>
-        <h2>Elige el tamaño de proyecto que le queda a tu negocio.</h2>
+        <span class="kicker" data-i18n="invest-kicker">Por dónde empezar</span>
+        <h2 data-i18n="invest-h2">Elige el tamaño de proyecto que le queda a tu negocio.</h2>
       </div>
       <div class="invest-duo reveal">
         <div class="invest-card frugal">
-          <span class="kicker" style="color:#c77dff;">Para pymes en crecimiento</span>
-          <h3 style="font-weight:700; font-size:22px;">Automatización Frugal</h3>
-          <div class="big-num">$50k – $200k <span>MXN</span></div>
-          <p>El punto de partida para negocios pequeños: un proceso, un reporte o una automatización, bien resuelto, en 3 a 6 semanas — sin comprometer tu flujo de caja.</p>
-          <a class="btn-ghost invest-link" href="plataformas.html#inversion">Ver si tu negocio encaja →</a>
+          <span class="kicker" style="color:#c77dff;" data-i18n="frugal-eyebrow">Para pymes en crecimiento</span>
+          <h3 style="font-weight:700; font-size:22px;" data-i18n="frugal-name">Datos Accesibles, Accionables Inteligentes</h3>
+          <div class="big-num">$50k – $200k <span data-i18n="mxn">MXN</span></div>
+          <p data-i18n="frugal-desc-short">El punto de partida para negocios pequeños: un proceso, un reporte o una automatización, bien resuelto, en 3 a 6 semanas — sin comprometer tu flujo de caja.</p>
+          <a class="btn-ghost invest-link" href="/plataformas#inversion" data-page="plataformas" data-anchor="inversion" data-i18n="frugal-btn">Ver si tu negocio encaja →</a>
         </div>
         <div class="invest-card">
-          <span class="kicker">Inversión de referencia</span>
-          <h3 style="font-weight:700; font-size:22px;">Plataformas a la medida</h3>
-          <div class="big-num">$80k <span>MXN en adelante</span></div>
-          <p>Una plataforma de datos a la medida, del tamaño típico de una pyme, toma entre 4 y 12 semanas. Proyectos tipo SaaS o multi-sucursal suben de rango.</p>
-          <a class="btn-ghost invest-link" href="plataformas.html#inversion">Ver todos los rangos →</a>
+          <span class="kicker" data-i18n="ref-invest">Inversión de referencia</span>
+          <h3 style="font-weight:700; font-size:22px;" data-i18n="custom-platforms">Plataformas a la medida</h3>
+          <div class="big-num">$80k <span data-i18n="mxn-up">MXN en adelante</span></div>
+          <p data-i18n="custom-desc-short">Una plataforma de datos a la medida, del tamaño típico de una pyme, toma entre 4 y 12 semanas. Proyectos tipo SaaS o multi-sucursal suben de rango.</p>
+          <a class="btn-ghost invest-link" href="/plataformas#inversion" data-page="plataformas" data-anchor="inversion" data-i18n="see-ranges">Ver todos los rangos →</a>
         </div>
       </div>
       <div class="invest-others reveal">
-        <span class="label">También construimos:</span>
-        <a href="plataformas.html#inversion">Automatización puntual con IA</a>
-        <a href="plataformas.html#inversion">Sistema web a la medida</a>
-        <a href="plataformas.html#inversion">Plataforma multi-rol o multi-sucursal</a>
-        <a href="plataformas.html#inversion">Producto tipo SaaS propio</a>
+        <span class="label" data-i18n="also-build">También construimos:</span>
+        <a href="/plataformas#inversion" data-page="plataformas" data-anchor="inversion" data-i18n="pill-automation">Automatización puntual con IA</a>
+        <a href="/plataformas#inversion" data-page="plataformas" data-anchor="inversion" data-i18n="pill-websystem">Sistema web a la medida</a>
+        <a href="/plataformas#inversion" data-page="plataformas" data-anchor="inversion" data-i18n="pill-multirole">Plataforma multi-rol o multi-sucursal</a>
+        <a href="/plataformas#inversion" data-page="plataformas" data-anchor="inversion" data-i18n="pill-saas">Producto tipo SaaS propio</a>
       </div>
     </div>
   </section>
 
-  <section class="cta">
+  <section class="section wrap" style="padding-bottom:30px;">
+    <div class="section-head reveal">
+      <span class="kicker" data-i18n="process-kicker">Cómo trabajamos</span>
+      <h2 data-i18n="process-h2">De la llamada a una relación de largo plazo.</h2>
+    </div>
+    <div class="flow reveal">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <h4 data-i18n="step1-h">Llamada de diagnóstico</h4>
+        <p data-i18n="step1-p">Revisamos tu operación y tus datos actuales, sin compromiso.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <h4 data-i18n="step2-h">Propuesta y alcance</h4>
+        <p data-i18n="step2-p">Definimos qué se construye, en qué tiempo y con qué inversión.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <h4 data-i18n="step3-h">Construcción</h4>
+        <p data-i18n="step3-p">Diseñamos e integramos la plataforma con tus sistemas reales.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <h4 data-i18n="step4-h">Decisiones, no reportes</h4>
+        <p data-i18n="step4-p">Tu equipo recibe accionables claros desde el primer día de uso.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <h4 data-i18n="step5-h">Socios de crecimiento</h4>
+        <p data-i18n="step5-p">Nos convertimos en socios de crecimiento para siempre, construyendo cada siguiente paso juntos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" style="padding-top:10px;">
     <div class="wrap">
-      <span class="kicker">Empecemos</span>
-      <h2>Agenda una llamada y revisamos tu negocio juntos.</h2>
-      <p>Sin presentación de ventas. Vemos tu operación, tus datos y dónde exactamente podemos generar valor. También puedes escribirnos directo a <a href="mailto:info@mexaican.com" style="text-decoration:underline;">info@mexaican.com</a>.</p>
-      <a class="btn-primary" href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener">
+      <span class="kicker" data-i18n="lets-start">Empecemos</span>
+      <h2 data-i18n="cta-home-h2">Agenda una llamada y revisamos tu negocio juntos.</h2>
+      <p data-i18n="cta-home-p">Sin presentación de ventas. Vemos tu operación, tus datos y dónde exactamente podemos generar valor. También puedes escribirnos directo a <a href="mailto:info@mexaican.com" style="text-decoration:underline;">info@mexaican.com</a>.</p>
+      <a class="btn-primary" href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener" data-i18n="book-mexaican">
         Agendar llamada con MEXAICAN
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
   </section>
 
+
+  </div>
+
+  <div id="page-plataformas" class="page">
+
+
+  <section class="page-hero wrap">
+    <span class="kicker" data-i18n="plat-kicker">Plataformas</span>
+    <h1 data-i18n="plat-h1">Construimos cualquier plataforma de análisis de datos que tu negocio necesite.</h1>
+    <p data-i18n="plat-p">Desde un sistema 100% a la medida hasta un SaaS que ya existe y puedes usar hoy. Estos son dos ejemplos de cómo trabajamos, y las capacidades que puedes combinar en tu propia plataforma.</p>
+  </section>
+
+  <!-- SUNAI -->
+  <section class="feature-block wrap" id="sunai">
+    <div class="feature-grid">
+      <div class="feature-copy reveal">
+        <span class="feature-tag tag-sunai" data-i18n="sunai-tag">Caso a la medida · Manufactura global</span>
+        <h2>SunAI</h2>
+        <p class="desc" data-i18n="sunai-desc">SupplyNextAI (SunAI) es una plataforma construida 100% a la medida para visualizar los datos de almacén de una empresa de manufactura con operación global: inventario, compras, órdenes de compra y ventas, todo en un solo lugar. Ninguna parte es una plantilla: la arquitectura, las reglas de negocio y las integraciones con sus sistemas existentes se diseñaron desde cero para su forma específica de operar.</p>
+        <div class="feature-list">
+          <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f5a06a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="sunai-b1">Inventario, compras, órdenes de compra y ventas visibles en un solo lugar</span></div>
+          <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f5a06a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="sunai-b2">Reglas de negocio propias de la empresa, no genéricas de un producto estándar</span></div>
+          <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f5a06a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="sunai-b3">Integrado con los sistemas que la empresa ya usaba, sin migraciones forzadas</span></div>
+        </div>
+        <a class="btn-primary" href="https://www.supplynextai.com/" target="_blank" rel="noopener" data-i18n="visit-supplynext">Visitar supplynextai.com →</a>
+      </div>
+      <div class="feature-visual visual-sunai reveal">
+        <div class="visual-label" data-i18n="sunai-vis1">Panorama de almacén</div>
+        <div class="sentiment-rows" style="margin-top:18px;">
+          <div class="sentiment-row" data-i18n="sunai-m1">Inventario<div class="sentiment-fill"><span style="width:78%;background:#f07830"></span></div>78%</div>
+          <div class="sentiment-row" data-i18n="sunai-m2">Compras<div class="sentiment-fill"><span style="width:52%;background:#f07830"></span></div>52%</div>
+          <div class="sentiment-row" data-i18n="sunai-m3">Órdenes de compra<div class="sentiment-fill"><span style="width:64%;background:#f07830"></span></div>64%</div>
+          <div class="sentiment-row" data-i18n="sunai-m4">Ventas<div class="sentiment-fill"><span style="width:87%;background:#f07830"></span></div>87%</div>
+        </div>
+        <div class="visual-label" data-i18n="sunai-vis2">Actualizado en tiempo real</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POOLY -->
+  <section class="feature-block wrap">
+    <div class="feature-grid reverse">
+      <div class="feature-visual visual-pooly reveal">
+        <div class="visual-label" data-i18n="pooly-vis1">Sentimiento de clientes</div>
+        <div class="sentiment-rows" style="margin-top:18px;">
+          <div class="sentiment-row" data-i18n="pooly-m1">Servicio<div class="sentiment-fill"><span style="width:82%;background:#4aa8f5"></span></div>82%</div>
+          <div class="sentiment-row" data-i18n="pooly-m2">Precio<div class="sentiment-fill"><span style="width:54%;background:#4aa8f5"></span></div>54%</div>
+          <div class="sentiment-row" data-i18n="pooly-m3">Producto<div class="sentiment-fill"><span style="width:91%;background:#4aa8f5"></span></div>91%</div>
+          <div class="sentiment-row" data-i18n="pooly-m4">Entrega<div class="sentiment-fill"><span style="width:68%;background:#4aa8f5"></span></div>68%</div>
+        </div>
+        <div class="visual-label" data-i18n="pooly-vis2">Actualizado hace 3 minutos</div>
+      </div>
+      <div class="feature-copy reveal">
+        <span class="feature-tag tag-pooly">SaaS · pooly.mx</span>
+        <h2>Pooly</h2>
+        <p class="desc" data-i18n="pooly-desc">Pooly es el primer paso para conocer de verdad a tus clientes. Sube encuestas abiertas o un CSV de comentarios y recibe sentimiento, temas recurrentes y recomendaciones priorizadas — sin desarrollo, sin esperar semanas, desde $19 USD.</p>
+        <div class="feature-list">
+          <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7fbcf7" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pooly-b1">Listo para usar hoy, sin proyecto de desarrollo</span></div>
+          <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7fbcf7" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pooly-b2">Ideal para negocios físicos con varias sucursales y para e-commerce</span></div>
+          <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7fbcf7" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pooly-b3">Reporte ejecutivo en menos de 5 minutos</span></div>
+        </div>
+        <a class="btn-primary" href="https://pooly.mx" target="_blank" rel="noopener" data-i18n="go-pooly">Ir a pooly.mx →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRUGAL -->
+  <section class="feature-block wrap">
+    <div class="feature-grid">
+      <div class="feature-copy reveal">
+        <span class="feature-tag tag-frugal" data-i18n="frugal-tag-long">Para pymes en crecimiento · Desde $50,000 MXN</span>
+        <h2 data-i18n="frugal-name">Datos Accesibles, Accionables Inteligentes</h2>
+        <p class="desc" data-i18n="frugal-desc-long">El punto de partida pensado para negocios pequeños y medianos: un alcance acotado a lo que realmente mueve la aguja en tu operación, a una inversión que respeta el flujo de caja real de una pyme latinoamericana. No es una versión reducida de un proyecto grande — es el diseño correcto para donde está tu negocio hoy.</p>
+        <div class="feature-list">
+          <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c77dff" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="frugal-b1">Un proceso, un reporte o una automatización — bien resuelto, no un sistema entero a medias</span></div>
+          <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c77dff" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="frugal-b2">Inversión dimensionada para el tamaño real de tu negocio</span></div>
+          <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c77dff" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="frugal-b3">El inicio de una relación de largo plazo, con espacio para crecer juntos</span></div>
+        </div>
+        <a class="btn-primary" href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener" data-i18n="frugal-btn">Ver si tu negocio encaja →</a>
+      </div>
+      <div class="feature-visual visual-frugal reveal">
+        <div class="visual-label" data-i18n="frugal-name">Datos Accesibles, Accionables Inteligentes</div>
+        <div style="margin:22px 0;">
+          <div style="font-family:var(--display); font-weight:700; font-size:34px;">$50k – $200k <span style="font-size:15px; color:var(--text-faint); font-family:var(--body); font-weight:500;">MXN</span></div>
+          <div style="font-family:var(--mono); font-size:12px; color:var(--text-faint); margin-top:6px; text-transform:uppercase; letter-spacing:0.06em;" data-i18n="frugal-timeline">3 – 6 semanas · un alcance, bien resuelto</div>
+        </div>
+        <div class="sentiment-rows">
+          <div class="sentiment-row" data-i18n="frugal-p1">Diagnóstico<div class="sentiment-fill"><span style="width:100%;background:#c77dff"></span></div>Sem. 1</div>
+          <div class="sentiment-row" data-i18n="frugal-p2">Construcción<div class="sentiment-fill"><span style="width:70%;background:#c77dff"></span></div>Sem. 2–4</div>
+          <div class="sentiment-row" data-i18n="frugal-p3">En marcha<div class="sentiment-fill"><span style="width:30%;background:#c77dff"></span></div>Sem. 5–6</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section class="section" style="border-top:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker" data-i18n="cap-kicker">A la medida</span>
+        <h2 data-i18n="cap-h2">Cualquier plataforma de datos que tu negocio necesite construir.</h2>
+        <p data-i18n="cap-p">Si tu proceso es único o las herramientas genéricas ya no alcanzan, construimos desde cero alrededor de tu operación real.</p>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-card reveal">
+          <div class="cap-icon" style="background:rgba(123,63,196,0.16)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 4 5-8"/></svg>
+          </div>
+          <h4 data-i18n="cap1-h">Dashboards ejecutivos</h4>
+          <p data-i18n="cap1-p">Toda tu operación visible en un solo lugar, sin exportar Excel a mano.</p>
+        </div>
+        <div class="cap-card reveal">
+          <div class="cap-icon" style="background:rgba(232,73,154,0.16)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <h4 data-i18n="cap2-h">Automatización con IA</h4>
+          <p data-i18n="cap2-p">Clasificación de documentos, respuestas a clientes y tareas repetitivas fuera de tu operación diaria.</p>
+        </div>
+        <div class="cap-card reveal">
+          <div class="cap-icon" style="background:rgba(240,120,48,0.16)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+          </div>
+          <h4 data-i18n="cap3-h">Predicción de demanda</h4>
+          <p data-i18n="cap3-p">Anticipa inventario, personal o ventas antes de que el problema llegue a caja.</p>
+        </div>
+        <div class="cap-card reveal">
+          <div class="cap-icon" style="background:rgba(245,200,66,0.16)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          </div>
+          <h4 data-i18n="cap4-h">Integraciones</h4>
+          <p data-i18n="cap4-p">Conectamos tu ERP, CRM, punto de venta, WhatsApp Business o facturación existentes.</p>
+        </div>
+        <div class="cap-card reveal">
+          <div class="cap-icon" style="background:rgba(74,168,245,0.16)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <h4 data-i18n="cap5-h">Inteligencia de clientes</h4>
+          <p data-i18n="cap5-p">Sentimiento, temas y prioridades a partir de encuestas, reseñas y comentarios abiertos.</p>
+        </div>
+        <div class="cap-card reveal">
+          <div class="cap-icon" style="background:rgba(123,63,196,0.16)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          </div>
+          <h4 data-i18n="cap6-h">Reportes ejecutivos</h4>
+          <p data-i18n="cap6-p">De datos crudos a un documento listo para presentar a dirección, en minutos.</p>
+        </div>
+      </div>
+      <div class="reveal" style="text-align:center; margin-top:36px;">
+        <a class="btn-primary" href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener">
+          <span data-i18n="review-platform">Revisar la plataforma que necesitas</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVESTMENT -->
+  <section class="section" style="border-top:1px solid var(--line); background:var(--bg-2);" id="inversion">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker" data-i18n="inv-kicker">Inversión de referencia · México 2026</span>
+        <h2 data-i18n="inv-h2">Rangos según el tipo de plataforma que necesitas.</h2>
+        <p data-i18n="inv-p">Referencia general del mercado mexicano de desarrollo a la medida en 2026. El número exacto depende de tus integraciones, tus datos y tu operación — lo definimos juntos en la llamada. Da clic en cualquier opción para ver más detalle.</p>
+      </div>
+
+      <div class="invest-group reveal">
+        <details class="invest-item" open>
+          <summary>
+            <div class="invest-item-info">
+              <h4 data-i18n="inv1-h">Datos Accesibles, Accionables Inteligentes</h4>
+              <div class="sub" data-i18n="inv1-s">Para pymes que dan su primer paso con datos</div>
+            </div>
+            <div class="invest-item-figures">
+              <div class="price">$50,000 – $200,000 MXN</div>
+              <div class="time">3 – 6 semanas</div>
+            </div>
+            <div class="invest-toggle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            </div>
+          </summary>
+          <div class="invest-item-body">
+            <p data-i18n="inv1-b">Pensada para el flujo de caja real de un negocio pequeño: en vez de un sistema completo, resolvemos un proceso, un reporte o una automatización específica — bien hecha, con espacio para crecer sobre esa base después. Es el punto de entrada para empezar una relación de largo plazo con MEXAICAN.</p>
+          </div>
+        </details>
+
+        <details class="invest-item">
+          <summary>
+            <div class="invest-item-info">
+              <h4 data-i18n="inv2-h">Automatización puntual con IA</h4>
+              <div class="sub" data-i18n="inv2-s">Clasificación, respuestas, reportes automáticos</div>
+            </div>
+            <div class="invest-item-figures">
+              <div class="price">$80,000 – $400,000 MXN</div>
+              <div class="time">4 – 8 semanas</div>
+            </div>
+            <div class="invest-toggle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            </div>
+          </summary>
+          <div class="invest-item-body">
+            <p data-i18n="inv2-b">Automatizamos una tarea repetitiva concreta con IA: clasificar documentos, generar reportes, responder consultas frecuentes. Ideal cuando ya identificaste exactamente qué proceso te está costando horas cada semana.</p>
+          </div>
+        </details>
+        <details class="invest-item">
+          <summary>
+            <div class="invest-item-info">
+              <h4 data-i18n="inv3-h">Sistema web a la medida</h4>
+              <div class="sub" data-i18n="inv3-s">Dashboard, CRM o gestión interna con 2–4 módulos</div>
+            </div>
+            <div class="invest-item-figures">
+              <div class="price">$150,000 – $600,000 MXN</div>
+              <div class="time">6 – 12 semanas</div>
+            </div>
+            <div class="invest-toggle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            </div>
+          </summary>
+          <div class="invest-item-body">
+            <p data-i18n="inv3-b">Dashboard, CRM o sistema de gestión interna con 2 a 4 módulos — para negocios que ya necesitan un centro de operación propio, no solo una automatización puntual.</p>
+          </div>
+        </details>
+
+        <details class="invest-item">
+          <summary>
+            <div class="invest-item-info">
+              <h4 data-i18n="inv4-h">Plataforma multi-rol o multi-sucursal</h4>
+              <div class="sub" data-i18n="inv4-s">Varios perfiles de usuario, integraciones profundas</div>
+            </div>
+            <div class="invest-item-figures">
+              <div class="price">$400,000 – $1,000,000 MXN</div>
+              <div class="time">3 – 5 meses</div>
+            </div>
+            <div class="invest-toggle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            </div>
+          </summary>
+          <div class="invest-item-body">
+            <p data-i18n="inv4-b">Varios perfiles de usuario, permisos diferenciados e integraciones profundas con sistemas existentes — para operaciones con varias sucursales o equipos.</p>
+          </div>
+        </details>
+
+        <details class="invest-item">
+          <summary>
+            <div class="invest-item-info">
+              <h4 data-i18n="inv5-h">Producto tipo SaaS propio</h4>
+              <div class="sub" data-i18n="inv5-s">Multi-cliente, suscripción, escalable</div>
+            </div>
+            <div class="invest-item-figures">
+              <div class="price">$500,000 – $3,000,000+ MXN</div>
+              <div class="time">4 – 8 meses</div>
+            </div>
+            <div class="invest-toggle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            </div>
+          </summary>
+          <div class="invest-item-body">
+            <p data-i18n="inv5-b">Multi-cliente, suscripción, escalable — cuando el proyecto ya no es una herramienta interna, sino un producto que planeas vender.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="reveal" style="text-align:center; margin-top:36px;">
+        <p style="color:var(--text-dim); font-size:14.5px; margin-bottom:18px;" data-i18n="inv-cta-p">¿No sabes cuál te queda mejor? Lo resolvemos juntos en una llamada de 30 minutos.</p>
+        <a class="btn-primary" href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener" data-i18n="book-mexaican">
+          Agendar llamada con MEXAICAN
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-plat" style="border-top:1px solid var(--line);">
+    <div class="wrap">
+      <span class="kicker" data-i18n="lets-start">Empecemos</span>
+      <h2 data-i18n="cta-plat-h2">Agenda una llamada y revisamos tu negocio juntos.</h2>
+      <p data-i18n="cta-plat-p">Vemos tu operación, tus datos y dónde exactamente podemos generar valor. También puedes escribirnos directo a <a href="mailto:info@mexaican.com" style="text-decoration:underline;">info@mexaican.com</a>.</p>
+      <a class="btn-primary" href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener" data-i18n="book-mexaican">
+        Agendar llamada con MEXAICAN
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+
+  </div>
+
+  <div id="page-recursos" class="page">
+
+
+  <section class="page-hero-r wrap">
+    <span class="kicker" data-i18n="rec-kicker">Recursos</span>
+    <h1 data-i18n="rec-h1">Ideas sobre datos, IA y decisiones para negocios latinoamericanos.</h1>
+    <p data-i18n="rec-p">Notas cortas desde lo que vemos construyendo plataformas para empresas reales en la región — no teoría genérica de IA. ¿Preguntas? Escríbenos a <a href="mailto:info@mexaican.com" style="text-decoration:underline;">info@mexaican.com</a>.</p>
+  </section>
+
+  <section class="wrap">
+    <div class="articles">
+
+      <details class="article" open>
+        <summary>
+          <div>
+            <div class="article-meta">
+              <span class="article-read" data-i18n="a1-read">4 min de lectura</span>
+            </div>
+            <h3 data-i18n="a1-title">El verdadero cuello de botella de la IA en las pymes latinoamericanas no es la tecnología</h3>
+          </div>
+          <div class="article-toggle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="article-body">
+          <div class="article-graphic">
+            <svg viewBox="0 0 200 240" width="100%" height="100%">
+              <circle cx="60" cy="30" r="5" fill="#7b3fc4"/><circle cx="130" cy="55" r="5" fill="#e8499a"/>
+              <circle cx="90" cy="70" r="5" fill="#f07830"/><circle cx="160" cy="20" r="5" fill="#f5c842"/>
+              <circle cx="35" cy="60" r="5" fill="#4aa8f5"/><circle cx="115" cy="35" r="5" fill="#7b3fc4"/>
+              <line x1="100" y1="100" x2="100" y2="200" stroke="#2a2a33" stroke-width="2" stroke-dasharray="1 8" stroke-linecap="round"/>
+              <circle cx="100" cy="120" r="6" fill="#7b3fc4"/><circle cx="100" cy="150" r="6" fill="#e8499a"/>
+              <circle cx="100" cy="180" r="6" fill="#f07830"/><circle cx="100" cy="210" r="6" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="article-text">
+          <p data-i18n="a1-p1">Cuando una pyme en México o Colombia decide "meterle IA" al negocio, casi siempre el proyecto se detiene antes de escribir una línea de código: se detiene en la etapa de recolectar y ordenar la información. No es un problema de modelos ni de proveedores — es que los datos viven repartidos entre WhatsApp, un Excel del encargado de sucursal y la memoria de quien lleva quince años en el negocio.</p>
+          <p data-i18n="a1-p2">Por eso, en <strong>MEXAICAN</strong> el primer entregable casi nunca es un modelo predictivo sofisticado. Es una forma simple de que toda esa información dispersa llegue a un solo lugar, en un formato que alguien sin conocimientos técnicos pueda leer y usar el mismo día. La inteligencia artificial resuelve muy poco si antes no existe un canal limpio para que los datos lleguen ahí.</p>
+          <p data-i18n="a1-p3">La lección práctica: antes de preguntar qué modelo de IA usar, pregunta quién en tu equipo va a mirar el resultado cada semana y qué decisión concreta va a tomar con él. Si no hay respuesta clara a eso, el proyecto todavía no está listo para IA — está listo para ordenar datos.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="article">
+        <summary>
+          <div>
+            <div class="article-meta">
+              <span class="article-read" data-i18n="a2-read">3 min de lectura</span>
+            </div>
+            <h3 data-i18n="a2-title">Por qué la mayoría de los dashboards nunca cambian una decisión</h3>
+          </div>
+          <div class="article-toggle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="article-body">
+          <div class="article-graphic">
+            <svg viewBox="0 0 200 240" width="100%" height="100%">
+              <rect x="20" y="15" width="160" height="50" rx="8" fill="none" stroke="#2a2a33" stroke-width="2"/>
+              <rect x="35" y="30" width="120" height="6" rx="3" fill="#3a3a45"/>
+              <rect x="35" y="43" width="80" height="6" rx="3" fill="#3a3a45"/>
+              <rect x="20" y="80" width="160" height="50" rx="8" fill="none" stroke="#2a2a33" stroke-width="2"/>
+              <rect x="35" y="95" width="120" height="6" rx="3" fill="#3a3a45"/>
+              <rect x="35" y="108" width="90" height="6" rx="3" fill="#3a3a45"/>
+              <rect x="14" y="150" width="172" height="70" rx="10" fill="none" stroke="#4aa8f5" stroke-width="2.5"/>
+              <circle cx="34" cy="167" r="4" fill="#4aa8f5"/>
+              <rect x="34" y="182" width="134" height="7" rx="3.5" fill="#4aa8f5"/>
+              <rect x="34" y="199" width="90" height="7" rx="3.5" fill="#4aa8f5"/>
+            </svg>
+          </div>
+          <div class="article-text">
+          <p data-i18n="a2-p1">Existe un patrón que se repite en casi cualquier empresa que ya invirtió en un dashboard: se usó con entusiasmo el primer mes y hoy nadie lo abre. El problema rara vez es visual. Es que el dashboard describe el pasado con precisión, pero no le dice a nadie qué hacer distinto mañana.</p>
+          <p data-i18n="a2-p2">Un dashboard útil no es el que tiene más gráficas — es el que responde una pregunta operativa concreta con la urgencia correcta: qué sucursal necesita atención esta semana, qué producto va a quedarse sin stock, qué comentario de cliente hay que escalar hoy. Todo lo demás es decoración que compite por atención con lo que sí importa.</p>
+          <p data-i18n="a2-p3">Esta es la diferencia entre reportar y traducir. Reportar es mostrar números. Traducir es convertir esos números en la frase que un gerente puede repetir en una junta: "hagamos esto, por esta razón, esta semana". Ese es el estándar con el que diseñamos cada plataforma que construimos.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="article">
+        <summary>
+          <div>
+            <div class="article-meta">
+              <span class="article-read" data-i18n="a3-read">4 min de lectura</span>
+            </div>
+            <h3 data-i18n="a3-title">Automatización con IA en manufactura: lo que aprendimos construyendo SunAI</h3>
+          </div>
+          <div class="article-toggle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="article-body">
+          <div class="article-graphic">
+            <svg viewBox="0 0 200 240" width="100%" height="100%">
+              <rect x="15" y="150" width="26" height="70" rx="3" fill="#f07830" opacity="0.85"/>
+              <rect x="52" y="100" width="26" height="120" rx="3" fill="#f5c842" opacity="0.85"/>
+              <rect x="89" y="170" width="26" height="50" rx="3" fill="#f07830" opacity="0.85"/>
+              <rect x="126" y="60" width="26" height="160" rx="3" fill="#f5c842" opacity="0.85"/>
+              <rect x="163" y="130" width="26" height="90" rx="3" fill="#f07830" opacity="0.85"/>
+              <line x1="10" y1="222" x2="195" y2="222" stroke="#2a2a33" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="article-text">
+          <p data-i18n="a3-p1">Construir SunAI, nuestra plataforma para visualizar los datos de almacén de una empresa de manufactura con operación global — inventario, compras, órdenes de compra y ventas — nos dejó una convicción clara: la integración operativa profunda importa más que el algoritmo detrás del sistema. Dos empresas del mismo sector pueden manejar su almacén de formas casi opuestas — distintas reglas de reorden, distintas prioridades entre líneas de producto, distintas señales de alerta temprana.</p>
+          <p data-i18n="a3-p2">Un producto genérico obliga a la empresa a adaptar su operación al software. Una plataforma a la medida hace lo contrario: se adapta ella al proceso real del negocio. Esa fue la apuesta con SunAI — construir las reglas de negocio de la empresa dentro del sistema, no forzarla a aprender las reglas de un sistema ajeno.</p>
+          <p data-i18n="a3-p3">El resultado no fue solo un dashboard más bonito que una hoja de cálculo. Fue visibilidad en conjunto de toda la operación, con alertas que reflejan cómo esa empresa específica define "un problema de inventario" — no cómo lo define un producto pensado para cualquier fábrica del mundo.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="article">
+        <summary>
+          <div>
+            <div class="article-meta">
+              <span class="article-read" data-i18n="a4-read">3 min de lectura</span>
+            </div>
+            <h3 data-i18n="a4-title">SaaS vs. a la medida: cómo elegir la plataforma correcta para tu negocio</h3>
+          </div>
+          <div class="article-toggle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="article-body">
+          <div class="article-graphic">
+            <svg viewBox="0 0 200 240" width="100%" height="100%">
+              <circle cx="100" cy="55" r="36" fill="none" stroke="#4aa8f5" stroke-width="2.5"/>
+              <text x="100" y="60" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="13" fill="#7fbcf7">SaaS</text>
+              <circle cx="100" cy="185" r="36" fill="none" stroke="#f07830" stroke-width="2.5"/>
+              <text x="100" y="182" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="10.5" fill="#f5a06a">A la</text>
+              <text x="100" y="196" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="10.5" fill="#f5a06a">medida</text>
+              <path d="M100 95 L100 145" stroke="#2a2a33" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round"/>
+              <text x="100" y="124" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="10" fill="#6c6a72">¿CUÁL?</text>
+            </svg>
+          </div>
+          <div class="article-text">
+          <p data-i18n="a4-p1">La pregunta no es cuál opción es mejor en general, sino cuál corresponde al momento de tu negocio. Un SaaS como Pooly tiene sentido cuando el problema que quieres resolver es común a muchas empresas parecidas a la tuya — conocer a tus clientes, por ejemplo — y cuando quieres resultados esta semana, no este trimestre.</p>
+          <p data-i18n="a4-p2">Una plataforma a la medida tiene sentido cuando tu proceso de negocio ya es distinto al de tus competidores, cuando necesitas integraciones profundas con sistemas que ya usas, o cuando la ventaja competitiva que buscas depende precisamente de que nadie más tenga esa misma herramienta.</p>
+          <p data-i18n="a4-p3">En la práctica, muchas empresas hacen ambas cosas en momentos distintos: empiezan con un SaaS para validar qué preguntas importan de verdad, y cuando ese proceso ya probó su valor, construyen una plataforma propia alrededor de él. No es una decisión de una sola vez — es una decisión que revisamos contigo cada vez que tu negocio cambia de escala.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="article">
+        <summary>
+          <div>
+            <div class="article-meta">
+              <span class="article-read" data-i18n="a5-read">3 min de lectura</span>
+            </div>
+            <h3 data-i18n="a5-title">Qué es la innovación frugal, y por qué le queda bien a las pymes latinoamericanas</h3>
+          </div>
+          <div class="article-toggle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="article-body">
+          <div class="article-graphic">
+            <svg viewBox="0 0 200 240" width="100%" height="100%">
+              <polyline points="20,210 70,175 100,185 130,120 150,130 180,55" fill="none" stroke="#c77dff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="20" cy="210" r="5" fill="#c77dff"/><circle cx="70" cy="175" r="5" fill="#c77dff"/>
+              <circle cx="100" cy="185" r="5" fill="#c77dff"/><circle cx="130" cy="120" r="5" fill="#c77dff"/>
+              <circle cx="150" cy="130" r="5" fill="#c77dff"/><circle cx="180" cy="55" r="7" fill="#f5c842"/>
+              <text x="180" y="38" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="14" fill="#f5c842">+</text>
+            </svg>
+          </div>
+          <div class="article-text">
+          <p data-i18n="a5-p1">La innovación frugal nació de una pregunta muy concreta: ¿cómo resolver un problema real con menos recursos de los que "deberías" necesitar, sin que la solución se sienta pobre? No es hacer una versión barata de algo grande — es rediseñar el problema hasta encontrar la versión más simple que sigue generando el mismo valor.</p>
+          <p data-i18n="a5-p2">Para una pyme latinoamericana esto no es una filosofía de diseño, es supervivencia inteligente. La mayoría no necesita un sistema con veinte módulos y tres años de desarrollo — necesita que un problema específico deje de robarle tiempo y dinero esta misma temporada. <strong>Datos Accesibles, Accionables Inteligentes</strong> es nuestra forma de aplicar esta lógica: entender exactamente qué parte de tu operación duele más, y construir solo eso, bien hecho.</p>
+          <p data-i18n="a5-p3">La innovación frugal también cambia la relación entre quien construye y quien usa la herramienta. En vez de un proyecto cerrado que termina en la entrega, se vuelve el primer paso de una relación que crece junto con el negocio — hoy resolvemos lo urgente, y después seguimos construyendo sobre esa base.</p>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+
+  </div>
 </main>
 
 <footer>
@@ -366,7 +1018,7 @@ footer{ border-top:1px solid var(--line); padding:64px 0 40px; }
           <span class="logo-bars"><span></span><span></span><span></span><span></span><span></span></span>
           MEXAICAN
         </div>
-        <p>Mex AI Can — The Mexican Artificial Intelligence Company. Construimos plataformas de datos para negocios de cualquier tamaño en Latinoamérica.</p>
+        <p>Mex AI Can — IA para LATAM. Construimos plataformas de datos para negocios de cualquier tamaño en Latinoamérica.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/somosmexaican/" target="_blank" rel="noopener" aria-label="Instagram">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
@@ -381,25 +1033,25 @@ footer{ border-top:1px solid var(--line); padding:64px 0 40px; }
       </div>
       <div class="footer-cols">
         <div class="footer-col">
-          <h5>Sitio</h5>
-          <a href="index.html">Inicio</a>
-          <a href="plataformas.html">Plataformas</a>
-          <a href="recursos.html">Recursos</a>
+          <h5 data-i18n="footer-site">Sitio</h5>
+          <a href="/" data-page="inicio" data-i18n="nav-inicio">Inicio</a>
+          <a href="/plataformas" data-page="plataformas" data-i18n="nav-plataformas">Plataformas</a>
+          <a href="/recursos" data-page="recursos" data-i18n="nav-recursos">Recursos</a>
         </div>
         <div class="footer-col">
-          <h5>Plataformas</h5>
+          <h5 data-i18n="footer-platforms">Plataformas</h5>
           <a href="https://pooly.mx" target="_blank" rel="noopener">Pooly</a>
           <a href="https://www.supplynextai.com/" target="_blank" rel="noopener">SunAI</a>
         </div>
         <div class="footer-col">
-          <h5>Contacto</h5>
-          <a href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener">Agendar llamada</a>
+          <h5 data-i18n="footer-contact">Contacto</h5>
+          <a href="https://calendly.com/mexaican/30min" target="_blank" rel="noopener" data-i18n="footer-book-call">Agendar llamada</a>
           <a href="mailto:info@mexaican.com">info@mexaican.com</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <div>© <span id="year"></span> MEXAICAN. Guadalajara, México.</div>
+      <div>© <span id="year"></span> <span data-i18n="footer-bottom">MEXAICAN. Guadalajara, México.</span></div>
       <div class="footer-bars">
         <span style="background:var(--purple)"></span>
         <span style="background:var(--pink)"></span>
@@ -412,23 +1064,253 @@ footer{ border-top:1px solid var(--line); padding:64px 0 40px; }
 </footer>
 
 <script>
+
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  const revealEls = document.querySelectorAll('.reveal');
+  // ---- page switching (clean URLs via History API) ----
+  const pages = ['inicio','plataformas','recursos'];
+  function showPage(name, anchor, push){
+    if(!pages.includes(name)) name = 'inicio';
+    pages.forEach(p=>{
+      document.getElementById('page-'+p).classList.toggle('active', p===name);
+    });
+    document.querySelectorAll('.navlinks [data-page]').forEach(a=>{
+      a.classList.toggle('active', a.getAttribute('data-page')===name);
+    });
+    if(anchor){
+      requestAnimationFrame(()=>{
+        const el = document.getElementById(anchor);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    } else {
+      window.scrollTo({top:0, behavior:'instant'});
+    }
+    if(push !== false){
+      const path = name === 'inicio' ? '/' : '/' + name;
+      const url = path + (anchor ? '#' + anchor : '');
+      history.replaceState(null, '', url);
+    }
+  }
+
+  document.addEventListener('click', (e)=>{
+    const link = e.target.closest('[data-page]');
+    if(!link) return;
+    e.preventDefault();
+    showPage(link.getAttribute('data-page'), link.getAttribute('data-anchor'));
+  });
+
+  function initFromLocation(){
+    const path = location.pathname.replace(/^\/|\/$/g, '');
+    const anchor = location.hash ? location.hash.replace('#','') : null;
+    showPage(path || 'inicio', anchor, false);
+  }
+  window.addEventListener('popstate', initFromLocation);
+  initFromLocation();
+
+  // ---- reveal on scroll (re-observe on every page switch) ----
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.15 });
-  revealEls.forEach(el=> io.observe(el));
+  function observeReveals(){
+    document.querySelectorAll('.reveal:not(.in)').forEach(el=> io.observe(el));
+  }
+  observeReveals();
+  const pageObserver = new MutationObserver(observeReveals);
+  document.querySelectorAll('.page').forEach(p=> pageObserver.observe(p, {attributes:true, attributeFilter:['class']}));
 
+  // ---- i18n (ES/EN) ----
+  const EN_DICT = {
+  "nav-inicio": "Home",
+  "nav-plataformas": "Platforms",
+  "nav-recursos": "Resources",
+  "nav-cta": "Book a call",
+  "footer-site": "Site",
+  "footer-platforms": "Platforms",
+  "footer-contact": "Contact",
+  "footer-book-call": "Book a call",
+  "footer-bottom": "MEXAICAN. Guadalajara, Mexico.",
+  "hero-line1": "We build the data platform your",
+  "hero-line2": "needs to make better decisions.",
+  "hero-sub": "MEXAICAN designs and builds custom data analytics platforms — from an executive dashboard to a full operational intelligence system — for small, medium, and growing businesses across Latin America.",
+  "hero-btn2": "See platforms",
+  "examples-kicker": "A couple of projects we’ve built",
+  "examples-h2": "A 100% custom platform, or a SaaS ready to use today.",
+  "ex-sunai-tag": "Custom development",
+  "ex-sunai-desc": "A 100% custom-built platform to visualize warehouse data for a global manufacturing company: inventory, purchasing, purchase orders, and sales, all in one place. Zero templates: architecture and integrations designed from scratch for their operation.",
+  "ex-pooly-tag": "Ready-to-use SaaS",
+  "ex-pooly-desc": "The first step to truly knowing your customers. Turns open-ended surveys and feedback into sentiment, recurring topics, and prioritized recommendations — no development, no weeks of waiting, from $19 USD. Works just as well for physical businesses as for e-commerce.",
+  "go-pooly": "Go to pooly.mx →",
+  "invest-kicker": "Where to start",
+  "invest-h2": "Choose the project size that fits your business.",
+  "frugal-eyebrow": "For growing SMEs",
+  "frugal-name": "Accessible Data, Smart Actionables",
+  "mxn": "MXN",
+  "frugal-desc-short": "The starting point for small businesses: one process, one report, or one automation, done right, in 3 to 6 weeks — without straining your cash flow.",
+  "frugal-btn": "See if your business fits →",
+  "ref-invest": "Reference investment",
+  "custom-platforms": "Custom-built platforms",
+  "mxn-up": "MXN and up",
+  "custom-desc-short": "A custom-built data platform, at a typical SME scale, takes 4 to 12 weeks. SaaS-type or multi-location projects run higher.",
+  "see-ranges": "See all ranges →",
+  "also-build": "We also build:",
+  "pill-automation": "Targeted AI automation",
+  "pill-websystem": "Custom web system",
+  "pill-multirole": "Multi-role / multi-location platform",
+  "pill-saas": "Your own SaaS product",
+  "process-kicker": "How we work",
+  "process-h2": "From the first call to a long-term relationship.",
+  "step1-h": "Discovery call",
+  "step1-p": "We review your operation and current data, no strings attached.",
+  "step2-h": "Proposal and scope",
+  "step2-p": "We define what gets built, in how much time, and at what investment.",
+  "step3-h": "Build",
+  "step3-p": "We design and integrate the platform with your real systems.",
+  "step4-h": "Decisions, not reports",
+  "step4-p": "Your team gets clear action points from day one of using it.",
+  "step5-h": "Growth partners",
+  "step5-p": "We become growth partners for the long run, building every next step together.",
+  "lets-start": "Let's start",
+  "cta-home-h2": "Book a call and let's look at your business together.",
+  "cta-home-p": "No sales pitch. We look at your operation, your data, and exactly where we can create value. You can also write to us directly at <a href=\"mailto:info@mexaican.com\" style=\"text-decoration:underline;\">info@mexaican.com</a>.",
+  "book-mexaican": "Book a call with MEXAICAN",
+  "plat-kicker": "Platforms",
+  "plat-h1": "We build any data analytics platform your business needs.",
+  "plat-p": "From a 100% custom system to a SaaS that already exists and you can use today. Here are two examples of how we work, and the capabilities you can combine into your own platform.",
+  "sunai-tag": "Custom case · Global manufacturing",
+  "sunai-desc": "SupplyNextAI (SunAI) is a platform built 100% to order to visualize warehouse data for a global manufacturing company: inventory, purchasing, purchase orders, and sales, all in one place. No part of it is a template: the architecture, business rules, and integrations with their existing systems were designed from scratch for their specific way of operating.",
+  "sunai-b1": "Inventory, purchasing, purchase orders, and sales visible in one place",
+  "sunai-b2": "The company's own business rules, not the generic ones from an off-the-shelf product",
+  "sunai-b3": "Integrated with the systems the company already used, no forced migrations",
+  "visit-supplynext": "Visit supplynextai.com →",
+  "sunai-vis1": "Warehouse overview",
+  "sunai-m1": "Inventory<div class=\"sentiment-fill\"><span style=\"width:78%;background:#f07830\"></span></div>78%",
+  "sunai-m2": "Purchases<div class=\"sentiment-fill\"><span style=\"width:52%;background:#f07830\"></span></div>52%",
+  "sunai-m3": "Purchase orders<div class=\"sentiment-fill\"><span style=\"width:64%;background:#f07830\"></span></div>64%",
+  "sunai-m4": "Sales<div class=\"sentiment-fill\"><span style=\"width:87%;background:#f07830\"></span></div>87%",
+  "sunai-vis2": "Updated in real time",
+  "pooly-vis1": "Customer sentiment",
+  "pooly-m1": "Service<div class=\"sentiment-fill\"><span style=\"width:82%;background:#4aa8f5\"></span></div>82%",
+  "pooly-m2": "Price<div class=\"sentiment-fill\"><span style=\"width:54%;background:#4aa8f5\"></span></div>54%",
+  "pooly-m3": "Product<div class=\"sentiment-fill\"><span style=\"width:91%;background:#4aa8f5\"></span></div>91%",
+  "pooly-m4": "Delivery<div class=\"sentiment-fill\"><span style=\"width:68%;background:#4aa8f5\"></span></div>68%",
+  "pooly-vis2": "Updated 3 minutes ago",
+  "pooly-desc": "Pooly is the first step to truly knowing your customers. Upload open-ended surveys or a comments CSV and get sentiment, recurring topics, and prioritized recommendations — no development, no weeks of waiting, from $19 USD.",
+  "pooly-b1": "Ready to use today, no development project needed",
+  "pooly-b2": "Ideal for multi-location physical businesses and for e-commerce",
+  "pooly-b3": "Executive report in under 5 minutes",
+  "frugal-tag-long": "For growing SMEs · From $50,000 MXN",
+  "frugal-desc-long": "The starting point designed for small and medium businesses: a scope limited to what actually moves the needle in your operation, at an investment that respects the real cash flow of a Latin American SME. It's not a scaled-down version of a bigger project — it's the right design for where your business is today.",
+  "frugal-b1": "One process, one report, or one automation — done right, not a whole system done halfway",
+  "frugal-b2": "Investment sized to your business's real scale",
+  "frugal-b3": "The start of a long-term relationship, with room to grow together",
+  "frugal-timeline": "3 – 6 weeks · one scope, done right",
+  "frugal-p1": "Diagnostics<div class=\"sentiment-fill\"><span style=\"width:100%;background:#c77dff\"></span></div>Wk 1",
+  "frugal-p2": "Build<div class=\"sentiment-fill\"><span style=\"width:70%;background:#c77dff\"></span></div>Wk 2–4",
+  "frugal-p3": "Live<div class=\"sentiment-fill\"><span style=\"width:30%;background:#c77dff\"></span></div>Wk 5–6",
+  "cap-kicker": "Custom-built",
+  "cap-h2": "Any data platform your business needs to build.",
+  "cap-p": "If your process is unique, or generic tools no longer cut it, we build from scratch around your real operation.",
+  "cap1-h": "Executive dashboards",
+  "cap1-p": "Your whole operation visible in one place, no manual Excel exports.",
+  "cap2-h": "AI automation",
+  "cap2-p": "Document classification, customer replies, and repetitive tasks off your daily plate.",
+  "cap3-h": "Demand forecasting",
+  "cap3-p": "Anticipate inventory, staffing, or sales before the problem reaches the register.",
+  "cap4-h": "Integrations",
+  "cap4-p": "We connect your existing ERP, CRM, point of sale, WhatsApp Business, or invoicing.",
+  "cap5-h": "Customer intelligence",
+  "cap5-p": "Sentiment, topics, and priorities from surveys, reviews, and open-ended feedback.",
+  "cap6-h": "Executive reports",
+  "cap6-p": "From raw data to a document ready to present to leadership, in minutes.",
+  "review-platform": "Review the platform you need",
+  "inv-kicker": "Reference investment · Mexico 2026",
+  "inv-h2": "Ranges by the type of platform you need.",
+  "inv-p": "General reference from the Mexican custom-development market in 2026. The exact number depends on your integrations, your data, and your operation — we define it together on the call. Click any option for more detail.",
+  "inv1-h": "Accessible Data, Smart Actionables",
+  "inv1-s": "For SMEs taking their first step with data",
+  "inv1-b": "Designed for the real cash flow of a small business: instead of a full system, we solve one specific process, report, or automation — done right, with room to grow from there. It’s the entry point to start a long-term relationship with MEXAICAN.",
+  "inv2-h": "Targeted AI automation",
+  "inv2-s": "Classification, replies, automatic reports",
+  "inv2-b": "We automate one concrete repetitive task with AI: classifying documents, generating reports, answering common questions. Ideal once you’ve identified exactly which process is costing you hours every week.",
+  "inv3-h": "Custom web system",
+  "inv3-s": "Dashboard, CRM, or internal management with 2–4 modules",
+  "inv3-b": "A dashboard, CRM, or internal management system with 2 to 4 modules — for businesses that already need their own operations hub, not just a one-off automation.",
+  "inv4-h": "Multi-role / multi-location platform",
+  "inv4-s": "Multiple user roles, deep integrations",
+  "inv4-b": "Multiple user roles, differentiated permissions, and deep integrations with existing systems — for operations with several locations or teams.",
+  "inv5-h": "Your own SaaS product",
+  "inv5-s": "Multi-tenant, subscription, scalable",
+  "inv5-b": "Multi-tenant, subscription-based, scalable — when the project is no longer an internal tool, but a product you plan to sell.",
+  "inv-cta-p": "Not sure which one fits best? We'll figure it out together on a 30-minute call.",
+  "cta-plat-h2": "Book a call and let's look at your business together.",
+  "cta-plat-p": "We look at your operation, your data, and exactly where we can create value. You can also write to us directly at <a href=\"mailto:info@mexaican.com\" style=\"text-decoration:underline;\">info@mexaican.com</a>.",
+  "rec-kicker": "Resources",
+  "rec-h1": "Ideas on data, AI, and decisions for Latin American businesses.",
+  "rec-p": "Short notes from what we see building platforms for real businesses in the region — not generic AI theory. Questions? Write to us at <a href=\"mailto:info@mexaican.com\" style=\"text-decoration:underline;\">info@mexaican.com</a>.",
+  "a1-read": "4 min read",
+  "a1-title": "The real AI bottleneck in Latin American SMEs isn't technology",
+  "a1-p1": "When an SME in Mexico or Colombia decides to \"add AI\" to the business, the project almost always stalls before a single line of code is written: it stalls at the stage of collecting and organizing information. It’s not a problem of models or vendors — it’s that the data lives scattered across WhatsApp, a branch manager’s spreadsheet, and the memory of whoever has run the business for fifteen years.",
+  "a1-p2": "That’s why, at <strong>MEXAICAN</strong>, the first deliverable is almost never a sophisticated predictive model. It’s a simple way for all that scattered information to land in one place, in a format someone without technical knowledge can read and use the same day. AI solves very little if there’s no clean channel for the data to get there first.",
+  "a1-p3": "The practical lesson: before asking which AI model to use, ask who on your team will look at the result every week and what specific decision they’ll make with it. If there’s no clear answer to that, the project isn’t ready for AI yet — it’s ready to organize data.",
+  "a2-read": "3 min read",
+  "a2-title": "Why most dashboards never change a single decision",
+  "a2-p1": "A pattern repeats in almost every company that’s already invested in a dashboard: it was used enthusiastically the first month, and today nobody opens it. The problem is rarely visual. It’s that the dashboard describes the past accurately but doesn’t tell anyone what to do differently tomorrow.",
+  "a2-p2": "A useful dashboard isn’t the one with the most charts — it’s the one that answers one specific operational question with the right urgency: which location needs attention this week, which product is about to run out of stock, which customer comment needs to be escalated today. Everything else is decoration competing for attention with what actually matters.",
+  "a2-p3": "This is the difference between reporting and translating. Reporting is showing numbers. Translating is turning those numbers into the sentence a manager can repeat in a meeting: \"let’s do this, for this reason, this week.\" That’s the standard we design every platform we build to.",
+  "a3-read": "4 min read",
+  "a3-title": "AI automation in manufacturing: what we learned building SunAI",
+  "a3-p1": "Building SunAI, our platform to visualize warehouse data for a global manufacturing company — inventory, purchasing, purchase orders, and sales — left us with a clear conviction: deep operational integration matters more than the algorithm behind the system. Two companies in the same industry can run their warehouse in almost opposite ways — different reorder rules, different priorities across product lines, different early-warning signals.",
+  "a3-p2": "A generic product forces the company to adapt its operation to the software. A custom-built platform does the opposite: it adapts itself to the business’s real process. That was the bet with SunAI — build the company’s own business rules into the system, instead of forcing it to learn the rules of someone else’s system.",
+  "a3-p3": "The result wasn’t just a prettier dashboard than a spreadsheet. It was combined visibility across the whole operation, with alerts that reflect how that specific company defines \"an inventory problem\" — not how a product built for any factory in the world defines it.",
+  "a4-read": "3 min read",
+  "a4-title": "SaaS vs. custom-built: how to choose the right platform for your business",
+  "a4-p1": "The question isn’t which option is better in general, but which one fits where your business is right now. A SaaS like Pooly makes sense when the problem you want to solve is common to many businesses like yours — knowing your customers, for example — and when you want results this week, not this quarter.",
+  "a4-p2": "A custom-built platform makes sense when your business process is already different from your competitors’, when you need deep integrations with systems you already use, or when the competitive edge you’re after depends precisely on no one else having that same tool.",
+  "a4-p3": "In practice, many companies do both at different times: they start with a SaaS to validate which questions actually matter, and once that process has proven its value, they build their own platform around it. It’s not a one-time decision — it’s one we revisit with you every time your business changes scale.",
+  "a5-read": "3 min read",
+  "a5-title": "What frugal innovation is, and why it suits Latin American SMEs so well",
+  "a5-p1": "Frugal innovation grew out of a very specific question: how do you solve a real problem with fewer resources than you \"should\" need, without the solution feeling cheap? It’s not making a discount version of something big — it’s redesigning the problem until you find the simplest version that still delivers the same value.",
+  "a5-p2": "For a Latin American SME, this isn’t a design philosophy, it’s smart survival. Most don’t need a system with twenty modules and three years of development — they need one specific problem to stop costing them time and money this very season. <strong>Accessible Data, Smart Actionables</strong> is our way of applying that logic: understanding exactly which part of your operation hurts most, and building only that, done right.",
+  "a5-p3": "Frugal innovation also changes the relationship between whoever builds the tool and whoever uses it. Instead of a closed project that ends at delivery, it becomes the first step in a relationship that grows alongside the business — we solve what’s urgent today, then keep building on that foundation."
+};
+  const ES_CACHE = new Map();
+  let currentLang = (function(){ try { return localStorage.getItem('mex_lang') || 'es'; } catch(e){ return 'es'; } })();
+
+  function applyLang(lang){
+    currentLang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.dataset.i18n;
+      if(!ES_CACHE.has(key)) ES_CACHE.set(key, el.innerHTML);
+      el.innerHTML = (lang === 'en' && EN_DICT[key]) ? EN_DICT[key] : ES_CACHE.get(key);
+    });
+    document.documentElement.lang = lang === 'en' ? 'en' : 'es-MX';
+    const btn = document.getElementById('langToggle');
+    if(btn) btn.textContent = lang === 'en' ? 'ES' : 'EN';
+    try { localStorage.setItem('mex_lang', lang); } catch(e){}
+    currentWords = lang === 'en' ? wordsEN : wordsES;
+    buildTicker(lang);
+  }
+
+  const langBtn = document.getElementById('langToggle');
+  if(langBtn){
+    langBtn.addEventListener('click', ()=>{
+      applyLang(currentLang === 'en' ? 'es' : 'en');
+    });
+  }
+
+  // ---- hero word rotator (inicio) ----
+  const wordsES = ["gimnasio", "restaurante", "tienda en línea", "estudio de belleza", "manufactura", "cadena de hoteles", "spa", "clínica dental", "boutique de moda", "cafetería", "taller mecánico", "ferretería", "panadería", "farmacia", "veterinaria", "despacho contable", "inmobiliaria", "salón de eventos", "zapatería", "tienda de electrónica", "lavandería", "bufete legal", "centro de yoga", "heladería", "distribuidora", "taquería", "óptica", "papelería", "agencia de viajes", "escuela de idiomas"];
+  const wordsEN = ["gym", "restaurant", "online store", "beauty studio", "manufacturing plant", "hotel chain", "spa", "dental clinic", "fashion boutique", "coffee shop", "auto repair shop", "hardware store", "bakery", "pharmacy", "veterinary clinic", "accounting firm", "real estate agency", "event venue", "shoe store", "electronics store", "laundromat", "law firm", "yoga studio", "ice cream shop", "distributor", "taco shop", "optical shop", "stationery store", "travel agency", "language school"];
+  let currentWords = currentLang === 'en' ? wordsEN : wordsES;
   (function(){
-    const words = ['gimnasio','restaurante','tienda en línea','estudio de belleza','manufactura','cadena de hoteles'];
     const track = document.getElementById('rotatorTrack');
+    if(!track) return;
     let i = 0;
     setInterval(()=>{
-      i = (i+1) % words.length;
+      i = (i+1) % currentWords.length;
       const el = document.createElement('span');
       el.className = 'rotator-word';
-      el.textContent = words[i];
+      el.textContent = currentWords[i];
       track.style.transition = 'transform .5s cubic-bezier(.16,1,.3,1)';
       track.appendChild(el);
       track.style.transform = `translateY(-${(track.children.length-1)*1.1}em)`;
@@ -438,7 +1320,7 @@ footer{ border-top:1px solid var(--line); padding:64px 0 40px; }
           track.innerHTML = '';
           const first = document.createElement('span');
           first.className='rotator-word';
-          first.textContent = words[i];
+          first.textContent = currentWords[i];
           track.appendChild(first);
           track.style.transform='translateY(0)';
         }, 520);
@@ -446,17 +1328,22 @@ footer{ border-top:1px solid var(--line); padding:64px 0 40px; }
     }, 2400);
   })();
 
-  (function(){
-    const items = [
-      'Dashboards ejecutivos','Automatización Frugal para pymes','Predicción de demanda',
-      'Reportes en minutos, no en semanas','Integraciones con tus sistemas',
-      'Análisis de sentimiento de clientes','Visibilidad de almacén en tiempo real'
-    ];
-    const colors = ['#7b3fc4','#e8499a','#f07830','#f5c842','#4aa8f5'];
+  // ---- ticker content (inicio) ----
+  const itemsES = ["Dashboards ejecutivos", "Datos Accesibles, Accionables Inteligentes para pymes", "Predicción de demanda", "Reportes en minutos, no en semanas", "Integraciones con tus sistemas", "Análisis de sentimiento de clientes", "Visibilidad de almacén en tiempo real"];
+  const itemsEN = ["Executive dashboards", "Accessible Data, Smart Actionables for SMEs", "Demand forecasting", "Reports in minutes, not weeks", "Integrations with your systems", "Customer sentiment analysis", "Real-time warehouse visibility"];
+  const tickerColors = ['#7b3fc4','#e8499a','#f07830','#f5c842','#4aa8f5'];
+  function buildTicker(lang){
     const track = document.getElementById('tickerTrack');
-    const build = ()=> items.map((t,i)=>`<span class="ticker-item"><span class="sep" style="background:${colors[i%colors.length]}"></span>${t}</span>`).join('');
+    if(!track) return;
+    const items = lang === 'en' ? itemsEN : itemsES;
+    const build = ()=> items.map((t,i)=>`<span class="ticker-item"><span class="sep" style="background:${tickerColors[i%tickerColors.length]}"></span>${t}</span>`).join('');
     track.innerHTML = build() + build();
-  })();
+  }
+  buildTicker(currentLang);
+
+  // ---- apply saved language preference on load ----
+  if(currentLang === 'en'){ applyLang('en'); }
+
 </script>
 
 </body>
