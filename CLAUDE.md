@@ -4,7 +4,7 @@
 
 Herramienta interna de seguimiento de outreach/ventas ("Pooly CRM", instancia MEXAICAN). Antes vivía como una sola app React sin build persistida en `localStorage` del navegador (ver `index.html` en la raíz — prototipo original, ya no se toca). Ahora corre como dos servicios Flask propios sobre Postgres, deployados en el **mismo proyecto Railway que pooly-core**, para poder alimentar procesos automáticos de contacto en el futuro.
 
-Este repo comparte GitHub (`marlongonzalezmartinez-snai/mexaican`) con el sitio estático de MEXAICAN. **Todo el trabajo del CRM vive bajo `services/`** — el resto de archivos en la raíz (`index.html`, `plataformas.html`, `recursos.html`, `mexaicancom.html`, `_redirects`) son herramientas/sitio previos, no relacionados, y no se tocan desde aquí.
+Repo: `fragosoa/pooly-crm` (fork de `marlongonzalezmartinez-snai/mexaican`, renombrado). **Todo el trabajo del CRM vive bajo `services/`** — el resto de archivos en la raíz (`index.html`, `plataformas.html`, `recursos.html`, `mexaicancom.html`, `_redirects`) son herramientas/sitio previos del repo original, no relacionados, y no se tocan desde aquí.
 
 ## Estructura
 
@@ -28,6 +28,7 @@ scripts/
 
 - **Misma Postgres, tabla nueva.** `crm_prospects` vive en la misma instancia de Railway que las tablas de pooly-core, pero este repo nunca importa `packages/core/database` de pooly-core — tiene su propio `db.py` autocontenido.
 - **Mismo JWT.** `JWT_SECRET_KEY` debe ser idéntico al de pooly-core. Un token emitido por `POST /login` en pooly-core es válido aquí — este servicio no tiene tabla de usuarios ni login propio.
+- **Solo admins.** Todas las rutas `/prospects*` exigen `is_admin=true` en la tabla `users` de pooly-core (ver `services/api/auth.py` — `admin_required`, y `db.is_user_admin()`, un SELECT de solo lectura contra esa tabla compartida). `GET /me` es la excepción: solo exige JWT válido, sin exigir admin, para que el frontend pueda distinguir "credenciales inválidas" de "login correcto pero sin permisos" y mostrar el mensaje adecuado antes de renderizar la app.
 - **Alembic separado.** `services/api/migrations` usa `version_table = crm_alembic_version` (ver `migrations/env.py`) para no chocar con la tabla `alembic_version` que ya usa pooly-core en la misma DB. `alembic upgrade head` corre automáticamente al arrancar la API (mismo patrón que `PostgresBackend._run_migrations()` en pooly-core).
 - **id lo genera el cliente.** El frontend ya generaba ids con `uid()` (string corto aleatorio) antes de que existiera backend — se mantiene como PK en Postgres (`TEXT PRIMARY KEY`) para no tener que reconciliar ids entre el estado local y la DB.
 
@@ -43,7 +44,7 @@ El frontend sincroniza con un patrón simple, no CRUD granular por campo:
 ## Cómo correr localmente
 
 ```bash
-cd pooly-crm/mexaican   # este repo
+cd pooly-crm   # este repo (fork bajo fragosoa/pooly-crm)
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r services/api/requirements.txt -r services/web/requirements.txt
 

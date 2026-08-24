@@ -119,9 +119,13 @@ window.CRM_API = (function(){
     return apiFetch('/prospects/' + encodeURIComponent(id), {method:'DELETE'})
       .catch(function(err){ console.error('[pooly-crm] delete failed', err); });
   }
+  function getMe(){
+    return apiFetch('/me');
+  }
 
   return { getToken:getToken, setToken:setToken, clearToken:clearToken, apiFetch:apiFetch,
-           fetchProspects:fetchProspects, syncProspects:syncProspects, deleteProspect:deleteProspect };
+           fetchProspects:fetchProspects, syncProspects:syncProspects, deleteProspect:deleteProspect,
+           getMe:getMe };
 })();
 </script>
 <script>
@@ -138,13 +142,29 @@ const parts=line.includes('\t')?line.split('\t'):line.split(',');const[empresa,c
 </script>
 <script>
 function CrmAuthGate(){
-  const [token, setTokenState] = React.useState(window.CRM_API.getToken());
+  const [status, setStatus] = React.useState('checking'); // checking | authed | anon
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState('');
   const [loading, setLoading] = React.useState(false);
 
-  if (token) {
+  function verify(){
+    if (!window.CRM_API.getToken()) { setStatus('anon'); return; }
+    window.CRM_API.getMe().then(function(me){
+      if (me && me.is_admin) { setStatus('authed'); }
+      else { window.CRM_API.clearToken(); setStatus('anon'); }
+    }).catch(function(){
+      window.CRM_API.clearToken(); setStatus('anon');
+    });
+  }
+
+  React.useEffect(function(){ verify(); }, []);
+
+  if (status === 'checking') {
+    return React.createElement('div', {style:{minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background:'#000', color:'#8A8F98', fontFamily:'ui-sans-serif, system-ui, sans-serif', fontSize:13}}, 'Cargando...');
+  }
+
+  if (status === 'authed') {
     return React.createElement(window.PoolyCRMApp, null);
   }
 
@@ -160,8 +180,14 @@ function CrmAuthGate(){
       return res.json();
     }).then(function(data){
       window.CRM_API.setToken(data.access_token);
-      setTokenState(data.access_token);
+      return window.CRM_API.getMe();
+    }).then(function(me){
+      if (!me.is_admin) {
+        throw new Error('Tu cuenta no tiene permisos de administrador para el CRM.');
+      }
+      setStatus('authed');
     }).catch(function(err){
+      window.CRM_API.clearToken();
       setError(err.message || 'Error de autenticacion');
     }).finally(function(){ setLoading(false); });
   }

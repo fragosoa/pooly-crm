@@ -49,6 +49,18 @@ def get_conn():
     return psycopg2.connect(db_url, cursor_factory=RealDictCursor)
 
 
+def is_user_admin(username):
+    """Read-only lookup against pooly-core's `users` table, which lives in
+    this same Postgres instance. Deliberately just a raw SELECT — this repo
+    still never imports pooly-core's Python code, only shares its database."""
+    if not username:
+        return False
+    with get_conn() as conn, conn.cursor() as cur:
+        cur.execute("SELECT is_admin FROM users WHERE username = %s", (username,))
+        row = cur.fetchone()
+        return bool(row and row.get("is_admin"))
+
+
 def _row_to_api(row):
     if row is None:
         return None
