@@ -1,0 +1,14 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.env
+
+# OS
+.DS_Store
+
+# NOTE: index.html, plataformas.html, recursos.html, mexaicancom.html and
+# _redirects at the repo root predate the pooly-crm rework (existing static
+# tools already tracked in this repo's history — grants/perks tracker,
+# mexaican.com copy). They're left untouched here; the CRM lives entirely
+# under services/.
