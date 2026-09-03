@@ -36,6 +36,9 @@ FIELD_MAP = {
     "plantillaEnviada": "plantilla_enviada",
     "plantillaOverride": "plantilla_override",
     "plantillaTexto": "plantilla_texto",
+    "subStatus": "sub_status",
+    "subStatusFecha": "sub_status_fecha",
+    "contactLog": "contact_log",
 }
 DB_TO_API = {db_col: api_key for api_key, db_col in FIELD_MAP.items()}
 MUTABLE_COLUMNS = list(FIELD_MAP.values())  # everything except id/created_at/updated_at
@@ -67,7 +70,7 @@ def _row_to_api(row):
     out = {"id": row["id"]}
     for db_col, api_key in DB_TO_API.items():
         val = row.get(db_col)
-        if db_col == "historial_estados":
+        if db_col in ("historial_estados", "contact_log"):
             out[api_key] = val if val is not None else []
         elif db_col == "plantilla_enviada":
             out[api_key] = bool(val)
@@ -77,7 +80,7 @@ def _row_to_api(row):
 
 
 def _prep_value(db_col, val):
-    if db_col == "historial_estados":
+    if db_col in ("historial_estados", "contact_log"):
         return Json(val if val is not None else [])
     return val
 

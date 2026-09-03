@@ -41,6 +41,18 @@ El frontend sincroniza con un patrón simple, no CRUD granular por campo:
 - En cualquier cambio del arreglo `prospects` (crear, editar, cambiar status): `POST /prospects/bulk` (upsert por id) empuja el arreglo completo. Barato de mantener, aceptable al volumen actual (~300 filas).
 - `deleteProspect` además llama `DELETE /prospects/:id` explícito (el bulk upsert no puede borrar).
 
+## Portar cambios del prototipo original (index.html en la raíz)
+
+El `index.html` de la raíz es la referencia — cuando alguien sube una versión nueva a `main` (features nuevos, campos nuevos, pipeline de status distinto), el proceso para traerlos a `develop` es:
+
+1. Reemplazar el `index.html` de la raíz con el nuevo.
+2. Re-localizar los offsets de bytes de los 3 bloques que `services/web/index.html` extrae de ahí (dos `<style>` + el `<script>` de `window.PoolyCRMApp`) — el script de build (fuera del repo, en el historial de esta conversación) valida con asserts que los límites son correctos antes de aplicar nada.
+3. Re-aplicar el set de ediciones puntuales (fetch/sync con la API, drafts, toast, sort, tema) — cada una se valida por conteo exacto de 1 ocurrencia; si algo cambió de forma en el prototipo nuevo, esa edición falla ruidosamente en vez de aplicar mal.
+4. Si el prototipo nuevo agrega campos al objeto prospecto (como pasó con `subStatus`, `subStatusFecha`, `contactLog`), agregarlos a `FIELD_MAP` en `db.py` y a una migración Alembic nueva — el resto del CRUD (`create/update/upsert`) los recoge solo porque `MUTABLE_COLUMNS` deriva de `FIELD_MAP`.
+5. Si el prototipo nuevo renombra valores de status u otros enums, el propio archivo suele traer una función de migración client-side (ej. `migrateProspectStatus`) que normaliza datos viejos al vuelo — conviene aplicarla también a lo que devuelve `GET /prospects`, no solo a `localStorage`.
+
+Para mezclar datos de un export de localStorage de otra instancia del prototipo (botón "Exportar" del propio prototipo) hacia la DB compartida: `scripts/migrate_export_json.py --file export.json --api <url> --token <jwt>` (upsert por id, no pisa nada que no venga en el export).
+
 ## Cómo correr localmente
 
 ```bash
